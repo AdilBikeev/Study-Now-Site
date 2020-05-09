@@ -1,0 +1,5 @@
+﻿.block {
+    display: flex;
+    width: 300px;
+    background-color: red;
+}
