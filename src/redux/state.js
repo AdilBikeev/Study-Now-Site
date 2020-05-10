@@ -1,6 +1,4 @@
-﻿import { RenderUpdate } from './../render';
-
-const APP_CHANGETEXT = 'APP_CHANGETEXT';
+﻿const APP_CHANGETEXT = 'APP_CHANGETEXT';
 
 let store = {
     _state: {
@@ -9,14 +7,20 @@ let store = {
         }
     },
 
-    dispatch(action)
-    {
-        debugger;
+    _callSubscriber(nameCallback){
+        console.log(`callback: ${nameCallback}`);
+    },
+
+    subscribe(observe){
+        this._callSubscriber = observe;
+    },
+
+    dispatch(action){
         if(action.type === APP_CHANGETEXT)
         {
             console.log(action.value);
             this._state.App.textForAlert = action.value;
-            RenderUpdate(this);
+            this._callSubscriber(this);
         }
     }
 };
