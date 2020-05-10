@@ -9,6 +9,9 @@ import School from './components/Page/School/School';
 import University from './components/Page/University/University';
 import IT from './components/Page/IT/IT';
 
+// Variables
+import { onTextAreaChangeActionCreator } from './redux/state';
+
 const App = (props) => {
   let textArea = React.createRef();
 
@@ -17,10 +20,7 @@ const App = (props) => {
   };
 
   let onTextAreaChange = () => {
-    props.dispatch({
-      type: 'APP-CHANGETEXT',
-      value: textArea.current.value
-    });
+    props.dispatch(onTextAreaChangeActionCreator(textArea.current.value));
   };
 
   return (

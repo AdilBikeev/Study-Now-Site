@@ -1,5 +1,6 @@
 ﻿import { RenderUpdate } from './../render';
 
+const APP_CHANGETEXT = 'APP_CHANGETEXT';
 
 let store = {
     _state: {
@@ -8,7 +9,8 @@ let store = {
 
     dispatch(action)
     {
-        if(action.type === 'APP-CHANGETEXT')
+        debugger;
+        if(action.type === APP_CHANGETEXT)
         {
             console.log(action.value);
             this._state.textForAlert = action.value;
@@ -16,6 +18,11 @@ let store = {
         }
     }
 };
+
+export const onTextAreaChangeActionCreator = (textNew) => ({
+    type: APP_CHANGETEXT,
+    value: textNew
+});
 
 export default store;
 window.store = store;
