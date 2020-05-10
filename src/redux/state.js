@@ -3,16 +3,19 @@
 
 let store = {
     _state: {
-        App: {
-            textForAlert: 'Hello world',
-            ChangeTextForAlert(text) {
-                console.log(text);
-                this.textForAlert = text;
-                RenderUpdate(store._state);
-            }
+        textForAlert: 'Hello world'
+    },
+
+    dispatch(action)
+    {
+        if(action.type === 'APP-CHANGETEXT')
+        {
+            console.log(action.value);
+            this._state.textForAlert = action.value;
+            RenderUpdate(this);
         }
     }
 };
 
-export default store._state;
+export default store;
 window.store = store;

@@ -17,7 +17,10 @@ const App = (props) => {
   };
 
   let onTextAreaChange = () => {
-    props.state.ChangeTextForAlert(textArea.current.value);
+    props.dispatch({
+      type: 'APP-CHANGETEXT',
+      value: textArea.current.value
+    });
   };
 
   return (
