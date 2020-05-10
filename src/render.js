@@ -6,7 +6,7 @@ import App from './App';
 export let RenderUpdate = (store) => {
     ReactDOM.render(
       <React.StrictMode>
-        <App state={store._state} dispatch={store.dispatch.bind(store)}/>
+        <App state={store._state.App} dispatch={store.dispatch.bind(store)}/>
       </React.StrictMode>,
       document.getElementById('root')
     );

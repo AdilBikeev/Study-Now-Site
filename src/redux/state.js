@@ -4,7 +4,9 @@ const APP_CHANGETEXT = 'APP_CHANGETEXT';
 
 let store = {
     _state: {
-        textForAlert: 'Hello world'
+        App: {
+            textForAlert: 'Hello world'  
+        }
     },
 
     dispatch(action)
@@ -13,7 +15,7 @@ let store = {
         if(action.type === APP_CHANGETEXT)
         {
             console.log(action.value);
-            this._state.textForAlert = action.value;
+            this._state.App.textForAlert = action.value;
             RenderUpdate(this);
         }
     }
