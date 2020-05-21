@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, BrowserRouter } from "react-router-dom";
 import s from './App.module.css';
-import Header from './components/Header/Header';
 import { connect } from 'react-redux';
 import { Home } from './components/Content/Home/Home';
+import { HeaderContainer } from './components/Header/HeaderContainer';
 
 const App = (props: any) => {
   return (
     <BrowserRouter>
-          <Header title={props.title} />
+          <HeaderContainer />
           <div className={s.content}>
             <Route path='/' component={Home} />
           </div>
