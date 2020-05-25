@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import clsx from 'clsx';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Toolbar, Typography, IconButton, Hidden } from '@material-ui/core';
@@ -86,7 +85,6 @@ export const Header: React.FC<Props> = ({
           aria-label="open drawer"
           edge="end"
           onClick={() => toggleDropRightMenu()}
-          className={clsx(isOpen && classes.hide)}
         >
           <MenuIcon />
         </IconButton>

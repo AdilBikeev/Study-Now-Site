@@ -6,7 +6,6 @@ import { actions } from "./actions";
 
 const mapStateToProps = (state: AppStateType) => {
     let localStateHeader = state.header;
-    debugger;
     return {
         title: localStateHeader.title,
         cursesName: localStateHeader.cursesName,

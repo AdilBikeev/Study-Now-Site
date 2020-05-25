@@ -44,7 +44,7 @@ export const DropRightMenu: React.FC<Props> = ({
 }) => {
     const classes = useStyles();
     const theme = useTheme();
-debugger;
+
     return (
         <Drawer
             className={classes.drawer}
