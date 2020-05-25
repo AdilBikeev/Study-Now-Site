@@ -1,21 +1,36 @@
 ﻿import { Header } from "./Header"
 import { connect } from 'react-redux';
-import { RootState } from "../../types";
 import React from "react";
+import { AppStateType } from "../../store";
+import { actions } from "./actions";
 
-const mapStateToProps = (state: RootState) => ({...state.appPage});
+const mapStateToProps = (state: AppStateType) => {
+    let localStateHeader = state.header;
+    debugger;
+    return {
+        title: localStateHeader.title,
+        cursesName: localStateHeader.cursesName,
+        isOpen: localStateHeader.isOpen
+    }
+};
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { 
+    toggleDropRightMenu: actions.toggleDropRightMenu
+}; 
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 
 const HeaderConstainerComponent: React.FC<Props> = ({
     title,
-    cursesName
+    cursesName,
+    isOpen,
+    toggleDropRightMenu
 }) => {
     return (<Header title={title}
-                    courses={cursesName} />);
+                    courses={cursesName}
+                    isOpen={isOpen}
+                    toggleDropRightMenu={toggleDropRightMenu} />);
 }
 
 

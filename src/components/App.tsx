@@ -1,25 +1,26 @@
 import React from 'react';
 import { Route, BrowserRouter } from "react-router-dom";
-import s from './App.module.css';
-import { connect } from 'react-redux';
 import { Home } from './components/Content/Home/Home';
 import { HeaderContainer } from './components/Header/HeaderContainer';
+import { createStyles, makeStyles } from '@material-ui/core';
 
-const App = (props: any) => {
+const useStyles = makeStyles(() => createStyles({
+  content: {
+    height: "100%",
+    width: "100%",
+    backgroundColor: "#F5EBEB",
+  }
+}));
+
+export const App = () => {
+  const classes = useStyles();
+
   return (
     <BrowserRouter>
           <HeaderContainer />
-          <div className={s.content}>
+          <div className={classes.content}>
             <Route path='/' component={Home} />
           </div>
     </BrowserRouter>
   );
 }
-
-let mapStateToProps = (state: any) => {
-  return {
-    title: state.appPage.title
-  }
-}
-
-export const AppContainer = connect(mapStateToProps, { })(App);

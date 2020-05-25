@@ -20,8 +20,10 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
+    "redux-actions": "^2.6.5",
+    "redux-store": "0.0.0",
     "redux-thunk": "^2.3.0",
-    "typesafe-actions": "^5.1.0",
+    "typedoc": "^0.17.7",
     "typescript": "^3.9.2"
   },
   "scripts": {
@@ -47,6 +49,7 @@
   },
   "devDependencies": {
     "@types/react-redux": "^7.1.9",
-    "@types/react-router-dom": "^5.1.5"
+    "@types/react-router-dom": "^5.1.5",
+    "@types/redux-actions": "^2.6.1"
   }
 }

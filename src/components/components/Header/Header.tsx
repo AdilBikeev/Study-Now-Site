@@ -1,12 +1,12 @@
 ﻿import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { Toolbar, Typography, IconButton, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText, Hidden } from '@material-ui/core';
+import { Toolbar, Typography, IconButton, Hidden } from '@material-ui/core';
 
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { DropRightMenu } from './components/DropRightMenu';
+import { actions } from './actions';
 
 const drawerWidth = 240;
 
@@ -45,20 +45,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type Props = {
   title: string;
-  courses: Array<string>
+  courses: Array<string>,
+  isOpen: boolean,
+  toggleDropRightMenu: typeof actions.toggleDropRightMenu
 };
 
 export const Header: React.FC<Props> = ({
   title,
-  courses
+  courses,
+  isOpen,
+  toggleDropRightMenu
 }) => {
   const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
 
   return (
     <div>
@@ -87,43 +85,17 @@ export const Header: React.FC<Props> = ({
           color="inherit"
           aria-label="open drawer"
           edge="end"
-          onClick={toggleDrawer}
-          className={clsx(open && classes.hide)}
+          onClick={() => toggleDropRightMenu()}
+          className={clsx(isOpen && classes.hide)}
         >
           <MenuIcon />
         </IconButton>
       </div>
     </Toolbar>
 
-      {/* Выпадающее меню */}
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="right"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}>
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={toggleDrawer}>
-            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-
-        <List>
-          {courses.map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                <MenuIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-
-      </Drawer>
-
+      <DropRightMenu courses={courses}
+                     isOpen={isOpen}
+                     toggleDropRightMenu={toggleDropRightMenu}/>
     </div>
   );
 }
