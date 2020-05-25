@@ -1,43 +1,20 @@
 ﻿import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import { Toolbar, Typography, IconButton, Hidden } from '@material-ui/core';
-
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { Toolbar, Typography, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+
 import { DropRightMenu } from './components/DropRightMenu';
 import { actions } from './actions';
+import { NavigationItems } from './components/NavigationItems';
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+const useStyles = makeStyles(createStyles({
     root: {
       display: 'flex',
       backgroundColor: "#EF6767",
     },
-    hide: {
-      display: 'none',
-    },
-    tabItems: {
-      flexGrow: 1,
-      textAlign: "center"
-    },
     drawer: {
-      width: drawerWidth,
+      width: 240,
       flexShrink: 0,
-    },
-    drawerPaper: {
-      width: drawerWidth,
-      backgroundColor: "#494949",
-      color: "white"
-    },
-    drawerHeader: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
-      ...theme.mixins.toolbar,
-      justifyContent: 'flex-start',
     },
   }),
 );
@@ -49,6 +26,12 @@ type Props = {
   toggleDropRightMenu: typeof actions.toggleDropRightMenu
 };
 
+/**
+ * Заголовок страницы
+ * @param title Текст, отображаемый в заголовке Header
+ * @param courses Список курсов
+ * @param isOpen Задает значение, показывающее, открыто ли выподающее меню.
+ */
 export const Header: React.FC<Props> = ({
   title,
   courses,
@@ -63,20 +46,10 @@ export const Header: React.FC<Props> = ({
     <Toolbar className={classes.root}>
 
       {/* Title */}
-      <Typography variant="h6" noWrap>
-        StudyNow
-      </Typography>
-
-
+      <Typography variant="h6" noWrap>{ title }</Typography>
 
       {/* Вкладки */}
-      <div className={classes.tabItems}>
-        <Hidden xsDown>
-          {courses.map(x => (
-            <Button key={x} onClick={() => { }}>{x}</Button>
-          ))}
-        </Hidden>
-      </div>
+      <NavigationItems courses={courses}/>
 
       {/* Кнопка выпадающего меню */}
       <div>

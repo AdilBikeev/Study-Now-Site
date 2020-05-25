@@ -37,6 +37,11 @@ type Props = {
     toggleDropRightMenu: typeof actions.toggleDropRightMenu
 };
 
+/**
+ * Выпадающее справа меню.
+ * @param courses Список курсов.
+ * @param isOpen Задает значение, показывающее, открыто ли выподающее меню.
+ */
 export const DropRightMenu: React.FC<Props> = ({
     courses,
     isOpen,
@@ -59,6 +64,7 @@ export const DropRightMenu: React.FC<Props> = ({
                     {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                 </IconButton>
             </div>
+
             <Divider />
 
             <List>
