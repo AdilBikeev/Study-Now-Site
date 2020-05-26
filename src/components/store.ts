@@ -1,9 +1,11 @@
-﻿import { headerReducer } from './components/Header/redusers/headerReducer';
+﻿import { appReducer } from './reducers/appReducer';
+import { headerReducer } from './components/Header/redusers/headerReducer';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import thunkMiddleware from "redux-thunk";
 
 export const rootReducers = combineReducers({
-    header: headerReducer
+    header: headerReducer,
+    app: appReducer,
 });
 
 export type AppStateType = ReturnType<typeof rootReducers>;

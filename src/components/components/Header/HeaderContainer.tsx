@@ -5,10 +5,11 @@ import { AppStateType } from "../../store";
 import { actions } from "./actions";
 
 const mapStateToProps = (state: AppStateType) => {
-    let localStateHeader = state.header;
+    const localStateHeader = state.header;
+    const localStateApp = state.app; 
     return {
         title: localStateHeader.title,
-        cursesName: localStateHeader.cursesName,
+        cursesName: localStateApp.curses.map(x => x.courseName),
         isOpen: localStateHeader.isOpen
     }
 };

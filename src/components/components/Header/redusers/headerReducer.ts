@@ -2,8 +2,7 @@
 
 let initialStateHeader = {
     isOpen: false,
-    title: 'Study-Now',
-    cursesName: ['ШКОЛА', 'ВУЗ', 'IT']
+    title: 'Study-Now'
 };
 
 export const headerReducer = (state = initialStateHeader, action: ActionType): initialStateHeaderType => {
