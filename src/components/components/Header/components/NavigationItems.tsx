@@ -25,7 +25,9 @@ const useStyles = makeStyles(createStyles({
     boxBtnItems: {
         width: generalProperties.width,
         borderRadius: generalProperties.borderRadius,
-        padding: '10px'
+        padding: '10px',
+        fontFamily: 'Vollkorn',
+        fontWeight: 'bold'
     }
 })
 );

@@ -12,6 +12,10 @@ const useStyles = makeStyles(createStyles({
     display: 'flex',
     backgroundColor: "#EF6767",
   },
+  title: {
+    fontFamily: 'Ultra',
+    fontWeight: 'bold',
+  },
   drawer: {
     width: 240,
     flexShrink: 0,
@@ -46,7 +50,7 @@ export const Header: React.FC<Props> = ({
       <Toolbar className={classes.root}>
 
         {/* Title */}
-        <Typography variant="h6" noWrap>{title}</Typography>
+        <Typography variant="h5" noWrap className={classes.title}>{title}</Typography>
 
         {/* Вкладки */}
         <NavigationItems courses={courses} />
