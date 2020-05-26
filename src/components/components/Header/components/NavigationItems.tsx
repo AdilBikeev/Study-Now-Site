@@ -1,13 +1,32 @@
 ﻿import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { Hidden } from '@material-ui/core';
+import { Hidden, Box } from '@material-ui/core';
+
+const generalProperties = {
+    width: '13vw',
+    borderRadius: '50%',
+}
 
 const useStyles = makeStyles(createStyles({
     tabItems: {
         flexGrow: 1,
-        textAlign: "center"
+        textAlign: 'center',
+        justifyContent: 'center',
+        display: 'flex' 
     },
+    boxBtns: {
+        width: generalProperties.width,
+        border: '3px solid #000000',
+        borderRadius: generalProperties.borderRadius,
+        backgroundColor: '#72FFA4',
+        margin: 'auto 30px',
+    },
+    boxBtnItems: {
+        width: generalProperties.width,
+        borderRadius: generalProperties.borderRadius,
+        padding: '10px'
+    }
 })
 );
 
@@ -25,12 +44,17 @@ export const NavigationItems: React.FC<Props> = ({
     const classes = useStyles();
 
     return (
-        <div className={classes.tabItems}>
+        <Box className={classes.tabItems}>
             <Hidden xsDown>
                 {courses.map(x => (
-                    <Button key={x} onClick={() => { }}>{x}</Button>
+                    <Box key={x}
+                         className={classes.boxBtns}>
+                        <Button
+                            className={classes.boxBtnItems}
+                            onClick={() => { }}>{x}</Button>
+                    </Box>
                 ))}
             </Hidden>
-        </div>
+        </Box >
     )
 }
