@@ -4,7 +4,7 @@
 };
 
 export const initialStateApp = {
-    curses: [
+    courses: [
         {
             courseName: 'ШКОЛА',
             carouselIamge: './../assets/School-CouruselImage.png',
