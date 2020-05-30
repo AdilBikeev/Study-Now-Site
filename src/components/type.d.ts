@@ -1,21 +1,27 @@
-﻿type Course = {
+﻿import schoolImg from './../assets/School-CouruselImage.png'
+
+type Course = {
     courseName: string,
+    description: string,
     carouselIamge: string
 };
 
 export const initialStateApp = {
-    curses: [
+    courses: [
         {
             courseName: 'ШКОЛА',
-            carouselIamge: './../assets/School-CouruselImage.png',
+            description: 'Здесь должно быть описание',
+            carouselIamge: schoolImg,
         },
         {
             courseName: 'ВУЗ',
-            carouselIamge: './../assets/School-CouruselImage.png',
+            description: 'Здесь должно быть описание',
+            carouselIamge: schoolImg,
         },
         {
             courseName: 'IT',
-            carouselIamge: './../assets/School-CouruselImage.png',
+            description: 'Здесь должно быть описание',
+            carouselIamge: schoolImg,
         }
     ]
 };

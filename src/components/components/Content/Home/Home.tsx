@@ -1,10 +1,37 @@
 ﻿import React from 'react';
-import s from './Home.module.css';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { CarouselMain } from '../../../../common/Carousel/CarouselMain';
+import { CarouselItem } from '../../../../common/Carousel/type';
 
-export const Home = () => {
+type Props = {
+    courses: Array<CarouselItem>
+}
+
+const carouselAutoPlay = true;
+
+const useStyles = makeStyles(createStyles({
+    root: {
+        width: '100%',
+        height: '100%'
+    },
+    carousel: {
+        height: '400px'
+    }
+}));
+
+
+export const Home: React.FC<Props> = ({
+    courses
+}) => {
+
+    const classes = useStyles();
+
     return (
-        <div className={s.home}>
-            Домашняя страница
+        <div className={classes.root}>
+            <CarouselMain
+                isAutoPlay={carouselAutoPlay}
+                rootClassName={classes.carousel}
+                carouselItems={courses} />
         </div>
     )
 }

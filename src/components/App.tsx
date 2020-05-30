@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, BrowserRouter } from "react-router-dom";
-import { Home } from './components/Content/Home/Home';
 import { HeaderContainer } from './components/Header/HeaderContainer';
 import { createStyles, makeStyles } from '@material-ui/core';
+import { HomeContainer } from './components/Content/Home/HomeContainer';
 
 const useStyles = makeStyles(() => createStyles({
   content: {
@@ -19,7 +19,7 @@ export const App = () => {
     <BrowserRouter>
           <HeaderContainer />
           <div className={classes.content}>
-            <Route path='/' component={Home} />
+            <Route path='/' component={HomeContainer} />
           </div>
     </BrowserRouter>
   );
