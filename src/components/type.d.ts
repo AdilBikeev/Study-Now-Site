@@ -1,4 +1,6 @@
-﻿import schoolImg from './../assets/School-CouruselImage.png'
+﻿import schoolImg from './../assets/School-CouruselImage.png';
+import universityImg from './../assets/University-CarouselImage.jpg';
+import itImg from './../assets/IT-CarouselImage.jpeg';
 
 type Course = {
     courseName: string,
@@ -16,12 +18,12 @@ export const initialStateApp = {
         {
             courseName: 'ВУЗ',
             description: 'Здесь должно быть описание',
-            carouselIamge: schoolImg,
+            carouselIamge: universityImg,
         },
         {
             courseName: 'IT',
             description: 'Здесь должно быть описание',
-            carouselIamge: schoolImg,
+            carouselIamge: itImg,
         }
     ]
 };

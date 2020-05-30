@@ -1,13 +1,22 @@
 ﻿import React from 'react';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
-import { CarouselItem } from './type';
+import { CarouselItemType, Media } from './type';
+import { CarouselItem } from './components/CarouselItem';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(createStyles({
+    itemsMedia: {
+        width: '100%',
+        height: '100%'
+    }
+}));
 
 const withAutoplay = require('react-awesome-slider/dist/autoplay')['default'];
 
 type Props = {
     rootClassName: string,
-    carouselItems: CarouselItem[],
+    carouselItems: CarouselItemType[],
     isAutoPlay: boolean
 }
 
@@ -23,16 +32,22 @@ export const CarouselMain: React.FC<Props> = ({
     isAutoPlay
 }) => {
 
-    debugger
+    const classes = useStyles();
+
     const Slider = isAutoPlay ? withAutoplay(AwesomeSlider) : AwesomeSlider;
 
+    const itemsMedia: Array<Media> = carouselItems.map(x => ({
+        slug: '',
+        className: classes.itemsMedia,
+        children: <CarouselItem title={x.title}
+        bgImage={x.carouselIamge}
+        btnText='Перейти'/>
+    }));
 
     return (
         <Slider className={rootClassName}
-            play={isAutoPlay}>
-            {carouselItems.map(x => (<div
-                key={x.title}
-                data-src={x.carouselIamge} />))}
+            play={!isAutoPlay}
+            media={itemsMedia}>
         </Slider>
     )
 }

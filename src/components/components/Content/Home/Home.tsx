@@ -1,10 +1,10 @@
 ﻿import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { CarouselMain } from '../../../../common/Carousel/CarouselMain';
-import { CarouselItem } from '../../../../common/Carousel/type';
+import { CarouselItemType } from '../../../../common/Carousel/type';
 
 type Props = {
-    courses: Array<CarouselItem>
+    courses: Array<CarouselItemType>
 }
 
 const carouselAutoPlay = true;
@@ -15,7 +15,7 @@ const useStyles = makeStyles(createStyles({
         height: '100%'
     },
     carousel: {
-        height: '400px'
+        height: '600px'
     }
 }));
 
