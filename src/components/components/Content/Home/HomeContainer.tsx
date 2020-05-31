@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 import React from "react";
 
 const mapStateToProps = (state: AppStateType) => {
-    const localStateApp = state.app; 
+    const localStateApp = state.app;
     return {
         courses: localStateApp.courses,
     }
 };
 
-const mapDispatchToProps = { 
+const mapDispatchToProps = {
     /*toggleDropRightMenu: actions.toggleDropRightMenu*/
-}; 
+};
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -26,8 +26,9 @@ const HomeConstainerComponent: React.FC<Props> = ({
         subTitle: x.description,
         carouselIamge: x.carouselIamge
     }));
-    
-    return <Home courses={carouselItems} />;
+
+    return <Home carouselItems={carouselItems}
+        courses={courses} />;
 }
 
 

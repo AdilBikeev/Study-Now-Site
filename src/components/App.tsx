@@ -8,7 +8,6 @@ const useStyles = makeStyles(() => createStyles({
   content: {
     height: "100%",
     width: "100%",
-    backgroundColor: "#F5EBEB",
   }
 }));
 

@@ -2,9 +2,12 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { CarouselMain } from '../../../../common/Carousel/CarouselMain';
 import { CarouselItemType } from '../../../../common/Carousel/type';
+import { ListBoxCourses } from './components/ListBoxCourses';
+import { Course } from '../../../type';
 
 type Props = {
-    courses: Array<CarouselItemType>
+    carouselItems: Array<CarouselItemType>,
+    courses: Array<Course>
 }
 
 const carouselAutoPlay = true;
@@ -21,6 +24,7 @@ const useStyles = makeStyles(createStyles({
 
 
 export const Home: React.FC<Props> = ({
+    carouselItems,
     courses
 }) => {
 
@@ -31,7 +35,8 @@ export const Home: React.FC<Props> = ({
             <CarouselMain
                 isAutoPlay={carouselAutoPlay}
                 rootClassName={classes.carousel}
-                carouselItems={courses} />
+                carouselItems={carouselItems} />
+            <ListBoxCourses courses={courses} />
         </div>
     )
 }
