@@ -5,7 +5,7 @@ import { Hidden, Box } from '@material-ui/core';
 
 const generalProperties = {
     width: '13vw',
-    borderRadius: '50%',
+    borderRadius: '50px',
 }
 
 const useStyles = makeStyles(createStyles({
@@ -47,7 +47,7 @@ export const NavigationItems: React.FC<Props> = ({
 
     return (
         <Box className={classes.tabItems}>
-            <Hidden xsDown>
+            <Hidden smDown>
                 {courses.map(x => (
                     <Box key={x}
                          className={classes.boxBtns}>

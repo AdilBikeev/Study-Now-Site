@@ -56,7 +56,7 @@ export const Header: React.FC<Props> = ({
         <NavigationItems courses={courses} />
 
         {/* Кнопка выпадающего меню */}
-        <Hidden smUp>
+        <Hidden mdUp>
           <IconButton
             color="inherit"
             aria-label="open drawer"
