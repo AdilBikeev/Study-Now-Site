@@ -6,7 +6,10 @@ import React from "react";
 const mapStateToProps = (state: AppStateType) => {
     const localStateApp = state.app;
     return {
-        courses: localStateApp.courses,
+        courses: localStateApp.courses.map(x => ({
+            ...x,
+            subCourses: x.subCourses ? x.subCourses : [] 
+        })),
     }
 };
 
