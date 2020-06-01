@@ -37,11 +37,31 @@ export const initialStateApp = {
             courseName: 'ВУЗ',
             description: 'Здесь должно быть описание',
             carouselIamge: universityImg,
+            subCourses: [
+                {
+                    icon: mathIcon,
+                    subCoursName: 'Высшая математика',
+                },
+                {
+                    icon: physicsIcon,
+                    subCoursName: 'Электронника',
+                }
+            ]
         },
         {
             courseName: 'IT',
             description: 'Здесь должно быть описание',
             carouselIamge: itImg,
+            subCourses: [
+                {
+                    icon: mathIcon,
+                    subCoursName: '3D-моделирование',
+                },
+                {
+                    icon: physicsIcon,
+                    subCoursName: 'Atomic Design',
+                }
+            ]
         }
     ] as Array<Course>
 };

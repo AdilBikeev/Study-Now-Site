@@ -1,21 +1,30 @@
 ﻿import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography, Button } from '@material-ui/core';
 
 import { Course } from '../../../../type';
 import { ListSubCourse } from './ListSubCourses';
 
 type Props = {
     courses: Array<Course>
-}
+};
 
+type selectCourseBtnType = {
+    text: string,
+    color: "secondary" | "inherit" | "default" | "primary" | undefined
+};
+
+const selectCourseBtn: selectCourseBtnType = {
+    text: 'Перейти',
+    color: 'secondary'
+};
 
 const useStyles = makeStyles(createStyles({
     listBoxCourses: {
+        display: 'flex',
         flexGrow: 1,
         textAlign: 'center',
         justifyContent: 'center',
-        display: 'flex',
         margin: '100px 20px',
         flexWrap: 'wrap'
     },
@@ -37,6 +46,11 @@ const useStyles = makeStyles(createStyles({
         borderBottomLeftRadius: '50%',
         borderBottomRightRadius: '50%',
         boxShadow: '0px 4px 30px rgba(0, 0, 0, 0.25)'
+    },
+    selectCourseBtn: {
+        color: '#FFFFFF',
+        backgroundColor: '#EF6767',
+        borderRadius: '50px'
     }
 }));
 
@@ -55,7 +69,12 @@ export const ListBoxCourses: React.FC<Props> = ({
             {courses.map(x => (<Box className={classes.listBoxItem}
                 key={x.courseName}>
                 <Typography variant="h4" noWrap className={classes.listItemTitle}>{x.courseName}</Typography>
-                <ListSubCourse subCourses={x.subCourses}/>
+                <ListSubCourse subCourses={x.subCourses} />
+                <Box>
+                    <Button className={classes.selectCourseBtn}
+                        variant="contained"
+                        color={selectCourseBtn.color}>{selectCourseBtn.text}</Button>
+                </Box>
             </Box>)
             )}
         </Box>

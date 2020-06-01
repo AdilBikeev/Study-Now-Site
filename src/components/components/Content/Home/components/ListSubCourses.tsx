@@ -9,7 +9,8 @@ type Props = {
 
 const useStyles = makeStyles(createStyles({
     subListNav: {
-        margin: '10px'
+        margin: '10px',
+        height: '50%'
     },
     sublistItemText: {
         fontFamily: 'Scada',
