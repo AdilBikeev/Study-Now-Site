@@ -57,26 +57,29 @@ export const DropRightMenu: React.FC<Props> = ({
             open={isOpen}
             classes={{
                 paper: classes.drawerPaper,
-            }}>
-            <div className={classes.drawerHeader}>
-                <IconButton onClick={() => toggleDropRightMenu(!isOpen)}>
-                    {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                </IconButton>
+            }}
+            onClose={toggleDropRightMenu(false)}>
+            <div>
+                <div className={classes.drawerHeader}>
+                    <IconButton onClick={toggleDropRightMenu(false)}>
+                        {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                    </IconButton>
+                </div>
+
+                <Divider />
+
+                <List>
+                    {courses.map((text) => (
+                        <ListItem button key={text}>
+                            <ListItemIcon>
+                                <MenuIcon />
+                            </ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItem>
+                    ))}
+                </List>
             </div>
-
-            <Divider />
-
-            <List>
-                {courses.map((text) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            <MenuIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
-
+            
         </Drawer>
 
     );

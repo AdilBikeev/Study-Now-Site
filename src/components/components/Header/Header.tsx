@@ -24,24 +24,34 @@ const useStyles = makeStyles(createStyles({
 
 type Props = {
   title: string;
-  courses: Array<string>,
-  isOpen: boolean
+  courses: Array<string>
 };
 
 /**
  * Заголовок страницы
  * @param title Текст, отображаемый в заголовке Header
  * @param courses Список курсов
- * @param isOpen Задает значение, показывающее, открыто ли выподающее меню.
  */
 export const Header: React.FC<Props> = ({
   title,
-  courses,
-  isOpen
+  courses
 }) => {
   const classes = useStyles();
 
-  const [open, toggleDrawer] = useState(false);
+  const [isOpen, setState] = useState(false);
+
+  const toggleDrawer = (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+
+    if (
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' ||
+        (event as React.KeyboardEvent).key === 'Shift')
+    ) {
+      return;
+    }
+
+    setState(isOpen);
+  };
 
   return (
     <div>
@@ -60,7 +70,7 @@ export const Header: React.FC<Props> = ({
             color="inherit"
             aria-label="open drawer"
             edge="end"
-            onClick={() => toggleDrawer(!open)}
+            onClick={toggleDrawer(true)}
           >
             <MenuIcon />
           </IconButton>
@@ -68,9 +78,11 @@ export const Header: React.FC<Props> = ({
 
       </Toolbar>
 
-      <DropRightMenu courses={courses}
-        isOpen={open}
-        toggleDropRightMenu={toggleDrawer} />
+      <React.Fragment>
+        <DropRightMenu courses={courses}
+          isOpen={isOpen}
+          toggleDropRightMenu={toggleDrawer} />
+      </React.Fragment>
     </div>
   );
 }

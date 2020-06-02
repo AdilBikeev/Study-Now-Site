@@ -1,7 +1,6 @@
 ﻿import { ActionType } from "../actions";
 
 let initialStateHeader = {
-    isOpen: false,
     title: 'Study-Now'
 };
 

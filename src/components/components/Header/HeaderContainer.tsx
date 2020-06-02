@@ -8,8 +8,7 @@ const mapStateToProps = (state: AppStateType) => {
     const localStateApp = state.app; 
     return {
         title: localStateHeader.title,
-        coursesName: localStateApp.courses.map(x => x.courseName),
-        isOpen: localStateHeader.isOpen
+        coursesName: localStateApp.courses.map(x => x.courseName)
     }
 };
 
@@ -23,11 +22,9 @@ type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 const HeaderConstainerComponent: React.FC<Props> = ({
     title,
     coursesName,
-    isOpen,
 }) => {
     return (<Header title={title}
-                    courses={coursesName}
-                    isOpen={isOpen} />);
+                    courses={coursesName}/>);
 }
 
 

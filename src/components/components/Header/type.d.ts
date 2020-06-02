@@ -3,8 +3,7 @@
  */
 type DropRightMenu = {
     title: string,
-    cursesName: Array<string>,
-    isOpen: boolean
+    cursesName: Array<string>
 };
 
 
