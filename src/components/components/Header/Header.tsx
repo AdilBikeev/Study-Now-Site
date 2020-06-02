@@ -1,10 +1,9 @@
-﻿import React from 'react';
+﻿import React, { useState } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Toolbar, Typography, IconButton, Hidden } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import { DropRightMenu } from './components/DropRightMenu';
-import { actions } from './actions';
 import { NavigationItems } from './components/NavigationItems';
 
 const useStyles = makeStyles(createStyles({
@@ -26,8 +25,7 @@ const useStyles = makeStyles(createStyles({
 type Props = {
   title: string;
   courses: Array<string>,
-  isOpen: boolean,
-  toggleDropRightMenu: typeof actions.toggleDropRightMenu
+  isOpen: boolean
 };
 
 /**
@@ -39,10 +37,11 @@ type Props = {
 export const Header: React.FC<Props> = ({
   title,
   courses,
-  isOpen,
-  toggleDropRightMenu
+  isOpen
 }) => {
   const classes = useStyles();
+
+  const [open, toggleDrawer] = useState(false);
 
   return (
     <div>
@@ -61,7 +60,7 @@ export const Header: React.FC<Props> = ({
             color="inherit"
             aria-label="open drawer"
             edge="end"
-            onClick={() => toggleDropRightMenu()}
+            onClick={() => toggleDrawer(!open)}
           >
             <MenuIcon />
           </IconButton>
@@ -70,8 +69,8 @@ export const Header: React.FC<Props> = ({
       </Toolbar>
 
       <DropRightMenu courses={courses}
-        isOpen={isOpen}
-        toggleDropRightMenu={toggleDropRightMenu} />
+        isOpen={open}
+        toggleDropRightMenu={toggleDrawer} />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import { IconButton, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { actions } from './../actions';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 type Props = {
     courses: Array<string>,
     isOpen: boolean,
-    toggleDropRightMenu: typeof actions.toggleDropRightMenu
+    toggleDropRightMenu: any//typeof actions.toggleDropRightMenu
 };
 
 /**
@@ -60,7 +59,7 @@ export const DropRightMenu: React.FC<Props> = ({
                 paper: classes.drawerPaper,
             }}>
             <div className={classes.drawerHeader}>
-                <IconButton onClick={() => toggleDropRightMenu()}>
+                <IconButton onClick={() => toggleDropRightMenu(!isOpen)}>
                     {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                 </IconButton>
             </div>

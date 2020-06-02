@@ -2,7 +2,6 @@
 import { connect } from 'react-redux';
 import React from "react";
 import { AppStateType } from "../../store";
-import { actions } from "./actions";
 
 const mapStateToProps = (state: AppStateType) => {
     const localStateHeader = state.header;
@@ -15,7 +14,7 @@ const mapStateToProps = (state: AppStateType) => {
 };
 
 const mapDispatchToProps = { 
-    toggleDropRightMenu: actions.toggleDropRightMenu
+
 }; 
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
@@ -25,12 +24,10 @@ const HeaderConstainerComponent: React.FC<Props> = ({
     title,
     coursesName,
     isOpen,
-    toggleDropRightMenu
 }) => {
     return (<Header title={title}
                     courses={coursesName}
-                    isOpen={isOpen}
-                    toggleDropRightMenu={toggleDropRightMenu} />);
+                    isOpen={isOpen} />);
 }
 
 
