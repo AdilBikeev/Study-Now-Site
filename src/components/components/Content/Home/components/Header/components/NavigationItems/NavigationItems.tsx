@@ -2,6 +2,8 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Hidden, Box } from '@material-ui/core';
+import { NavigationItemInfo } from './type';
+import { NavLink } from 'react-router-dom';
 
 const generalProperties = {
     width: '13vw',
@@ -33,7 +35,7 @@ const useStyles = makeStyles(createStyles({
 );
 
 type Props = {
-    courses: Array<string>
+    courses: Array<NavigationItemInfo>
 };
 
 /**
@@ -49,11 +51,13 @@ export const NavigationItems: React.FC<Props> = ({
         <Box className={classes.tabItems}>
             <Hidden smDown>
                 {courses.map(x => (
-                    <Box key={x}
+                    <Box key={x.courseName}
                          className={classes.boxBtns}>
                         <Button
                             className={classes.boxBtnItems}
-                            onClick={() => { }}>{x}</Button>
+                            component={NavLink}
+                            onClick={() => { }}
+                            to={x.coursePathURL}>{x.courseName}</Button>
                     </Box>
                 ))}
             </Hidden>

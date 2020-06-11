@@ -5,7 +5,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import { DropRightMenu } from './components/DropRightMenu';
 import { actions } from './actions';
-import { NavigationItems } from './components/NavigationItems';
+import { NavigationItems } from './components/NavigationItems/NavigationItems';
+import { NavigationItemInfo } from './components/NavigationItems/type';
 
 const useStyles = makeStyles(createStyles({
   root: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles(createStyles({
 
 type Props = {
   title: string;
-  courses: Array<string>,
+  courses: Array<NavigationItemInfo>,
   isOpen: boolean,
   toggleDropRightMenu: typeof actions.toggleDropRightMenu
 };
@@ -69,7 +70,7 @@ export const Header: React.FC<Props> = ({
 
       </Toolbar>
 
-      <DropRightMenu courses={courses}
+      <DropRightMenu courses={courses.map(x => x.courseName)}
         isOpen={isOpen}
         toggleDropRightMenu={toggleDropRightMenu} />
     </div>
