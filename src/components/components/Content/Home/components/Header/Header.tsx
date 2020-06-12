@@ -5,6 +5,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import { DropRightMenu } from './components/DropRightMenu';
 import { NavigationItems } from './components/NavigationItems';
+import { NavigationItemInfo } from './components/NavigationItems/type';
 
 const useStyles = makeStyles(createStyles({
   root: {
@@ -24,8 +25,7 @@ const useStyles = makeStyles(createStyles({
 
 type Props = {
   title: string;
-  courses: Array<string>
-};
+  courses: Array<string>};
 
 /**
  * Заголовок страницы
@@ -78,11 +78,13 @@ export const Header: React.FC<Props> = ({
 
       </Toolbar>
 
+      <DropRightMenu courses={courses}
+        isOpen={isOpen}
+        toggleDropRightMenu={toggleDropRightMenu} />
       <React.Fragment>
         <DropRightMenu courses={courses}
           isOpen={isOpen}
           toggleDropRightMenu={toggleDrawer} />
-      </React.Fragment>
-    </div>
+      </React.Fragment>    </div>
   );
 }

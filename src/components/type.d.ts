@@ -7,22 +7,30 @@ import vkIcon from './../assets/vk_icon.png'
 import youtubeIcon from './../assets/youtube_icon.png'
 import telegramIcon from './../assets/telegram_icon.png'
 
+/**
+ * Подкурс
+ */
 type SubCourse = {
-    icon: string,
-    subCoursName: string
+    icon: string, // путь к иконке подкурса
+    subCoursName: string // название подкурса
 };
 
+/**
+ * Курс
+ */
 type Course = {
-    courseName: string,
-    description: string,
-    carouselIamge: string,
-    subCourses: Array<SubCourse>
+    courseName: string, // название курса
+    pathURL: string, // путь к странице курса
+    description: string, // описание курса
+    carouselIamge: string, // путь к фотографии для отожраения карусели
+    subCourses: Array<SubCourse> // список подкурсов
 };
 
 export const initialStateApp = {
     courses: [
         {
             courseName: 'ШКОЛА',
+            pathURL: 'Course/School',
             description: 'Здесь должно быть описание',
             carouselIamge: schoolImg,
             subCourses: [
@@ -38,6 +46,7 @@ export const initialStateApp = {
         },
         {
             courseName: 'ВУЗ',
+            pathURL: 'Course/University',
             description: 'Здесь должно быть описание',
             carouselIamge: universityImg,
             subCourses: [
@@ -53,6 +62,7 @@ export const initialStateApp = {
         },
         {
             courseName: 'IT',
+            pathURL: 'Course/IT',
             description: 'Здесь должно быть описание',
             carouselIamge: itImg,
             subCourses: [

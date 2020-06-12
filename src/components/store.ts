@@ -1,5 +1,5 @@
 ﻿import { appReducer } from './reducers/appReducer';
-import { headerReducer } from './components/Header/redusers/headerReducer';
+import { headerReducer } from './components/Content/Home/components/Header/redusers/headerReducer';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import thunkMiddleware from "redux-thunk";
 
