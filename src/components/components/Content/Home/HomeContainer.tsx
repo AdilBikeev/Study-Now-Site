@@ -23,7 +23,7 @@ const mapStateToProps = (state: AppStateType) => {
 };
 
 const mapDispatchToProps = {
-    /*toggleDropRightMenu: actions.toggleDropRightMenu*/
+
 };
 
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;

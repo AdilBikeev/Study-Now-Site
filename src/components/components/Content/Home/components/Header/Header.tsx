@@ -2,10 +2,9 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Toolbar, Typography, IconButton, Hidden } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import { NavigationItemInfo } from "./components/NavigationItems/type";
 import { DropRightMenu } from './components/DropRightMenu';
-import { NavigationItems } from './components/NavigationItems';
-import { NavigationItemInfo } from './components/NavigationItems/type';
+import { NavigationItems } from './components/NavigationItems/NavigationItems';
 
 const useStyles = makeStyles(createStyles({
   root: {
@@ -25,7 +24,8 @@ const useStyles = makeStyles(createStyles({
 
 type Props = {
   title: string;
-  courses: Array<string>};
+  courses: Array<NavigationItemInfo>
+};
 
 /**
  * Заголовок страницы
@@ -78,13 +78,11 @@ export const Header: React.FC<Props> = ({
 
       </Toolbar>
 
-      <DropRightMenu courses={courses}
-        isOpen={isOpen}
-        toggleDropRightMenu={toggleDropRightMenu} />
       <React.Fragment>
-        <DropRightMenu courses={courses}
+        <DropRightMenu courses={courses.map(x => x.courseName)}
           isOpen={isOpen}
           toggleDropRightMenu={toggleDrawer} />
-      </React.Fragment>    </div>
+      </React.Fragment>
+    </div>
   );
 }

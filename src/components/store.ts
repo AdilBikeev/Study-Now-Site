@@ -2,9 +2,11 @@
 import { headerReducer } from './components/Content/Home/components/Header/redusers/headerReducer';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import thunkMiddleware from "redux-thunk";
+import { courseReducer } from './components/Content/Course/reducers/courseReducer';
 
 export const rootReducers = combineReducers({
     header: headerReducer,
+    course: courseReducer,
     app: appReducer,
 });
 

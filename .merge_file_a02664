@@ -1,6 +1,8 @@
 ﻿import React from 'react';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import { IconButton, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { actions } from '../actions';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -32,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 type Props = {
     courses: Array<string>,
     isOpen: boolean,
-    toggleDropRightMenu: any//typeof actions.toggleDropRightMenu
+    toggleDropRightMenu: typeof actions.toggleDropRightMenu
 };
 
 /**
@@ -56,29 +58,26 @@ export const DropRightMenu: React.FC<Props> = ({
             open={isOpen}
             classes={{
                 paper: classes.drawerPaper,
-            }}
-            onClose={toggleDropRightMenu(false)}>
-            <div>
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={toggleDropRightMenu(false)}>
-                        {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-
-                <Divider />
-
-                <List>
-                    {courses.map((text) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                <MenuIcon />
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
+            }}>
+            <div className={classes.drawerHeader}>
+                <IconButton onClick={() => toggleDropRightMenu()}>
+                    {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                </IconButton>
             </div>
-            
+
+            <Divider />
+
+            <List>
+                {courses.map((text) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>
+                            <MenuIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
+
         </Drawer>
 
     );
