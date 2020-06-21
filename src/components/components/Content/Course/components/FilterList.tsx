@@ -86,10 +86,10 @@ export const FilterList: React.FC<Props> = ({
 
     const [filters, setFilterValue] = React.useState(getFilterState());
 
-    const handleChange = (event: React.ChangeEvent<{ value: unknown }>, keyFilter: string) => {
+    const handleChange = (value: string, keyFilter: string) => {
         let filterValueChange = { ...filters };
 
-        filterValueChange[keyFilter] =  event.target.value as string;
+        filterValueChange[keyFilter] =  value;
 
         setFilterValue(filterValueChange);
     };
@@ -102,7 +102,7 @@ export const FilterList: React.FC<Props> = ({
                     labelId="demo-customized-select-label"
                     id="demo-customized-select"
                     value={filters[x.placeholder]}
-                    onChange={(e) => handleChange(e, x.placeholder)}
+                    onChange={() => handleChange(filters[x.placeholder], x.placeholder)}
                     input={<BootstrapInput />}
                 >
                     <MenuItem value={x.placeholder}>
