@@ -4,6 +4,8 @@ import { IconButton, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { NavigationItemInfo } from './NavigationItems/type';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -26,11 +28,14 @@ const useStyles = makeStyles((theme: Theme) =>
             ...theme.mixins.toolbar,
             justifyContent: 'flex-start',
         },
+        drawerListItem: {
+            color: '#FFFFFF'
+        }
     })
 );
 
 type Props = {
-    courses: Array<string>,
+    courses: Array<NavigationItemInfo>,
     isOpen: boolean,
     toggleDropRightMenu: any//typeof actions.toggleDropRightMenu
 };
@@ -68,17 +73,20 @@ export const DropRightMenu: React.FC<Props> = ({
                 <Divider />
 
                 <List>
-                    {courses.map((text) => (
-                        <ListItem button key={text}>
+                    {courses.map(x => (
+                        <ListItem className={classes.drawerListItem}
+                                  component={NavLink}
+                                  key={x.courseName}
+                                  to={x.coursePathURL}>
                             <ListItemIcon>
                                 <MenuIcon />
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={x.courseName} />
                         </ListItem>
                     ))}
                 </List>
             </div>
-            
+
         </Drawer>
 
     );

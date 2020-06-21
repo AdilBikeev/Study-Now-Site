@@ -79,7 +79,7 @@ export const Header: React.FC<Props> = ({
       </Toolbar>
 
       <React.Fragment>
-        <DropRightMenu courses={courses.map(x => x.courseName)}
+        <DropRightMenu courses={courses}
           isOpen={isOpen}
           toggleDropRightMenu={toggleDrawer} />
       </React.Fragment>
