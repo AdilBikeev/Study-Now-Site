@@ -1,7 +1,8 @@
 ﻿import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Course as CourseType } from '../../../type';
-import { FilterListContainer } from './components/FilterListContainer';
+import { FilterListContainer } from './components/Filter/FilterListContainer';
+import { WorkingPanel } from './components/WorkingPanel/WorkingPanel';
 
 type Props = {
     course: CourseType
@@ -13,12 +14,12 @@ const baseFontFamily = 'Poly';
 const useStyles = (bgImage: string) => makeStyles(createStyles({
     root: {
         display: 'block',
-        width: maxSize,
-        height: maxSize
+        width: maxSize
     },
     header: {
         display: 'flex',
         flexFlow: 'column',
+        minHeight: '310px',
         width: maxSize,
         background: `url(${bgImage}) no-repeat`,
         backgroundSize: '100% 100%',
@@ -58,6 +59,7 @@ export const Course: React.FC<Props> = ({
                 <div className={classes.title}>{course.courseName}</div>
                 <FilterListContainer courseName={course.pathURL}/>
             </div>
+            <WorkingPanel />
         </div>
     )
 };

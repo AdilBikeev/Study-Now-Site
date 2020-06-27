@@ -1,7 +1,7 @@
 ﻿import { FilterList } from "./FilterList"
 import { connect } from 'react-redux';
 import React from "react";
-import { AppStateType } from "../../../../store";
+import { AppStateType } from "../../../../../store";
 
 const mapStateToProps = (store: AppStateType) => {
     return {
