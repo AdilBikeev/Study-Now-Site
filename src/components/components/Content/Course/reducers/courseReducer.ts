@@ -1,7 +1,7 @@
 ﻿import { ActionType } from "../actions";
-import { FilterListForCourse } from "../type";
+import { CoursesDescription } from "../type";
 
-const initialStateCourse: Array<FilterListForCourse> = [
+const initialStateCourse: Array<CoursesDescription> = [
     {
         courseName: 'School',
         filterList: [
@@ -17,6 +17,14 @@ const initialStateCourse: Array<FilterListForCourse> = [
                 placeholder: 'Цель',
                 values: [ 'ОГЭ', 'ЕГЭ' ]
             },
+        ],
+        themesList: [
+            { name: 'Задание № 16 Планиметрия. Часть 1' },
+            { name: 'Задание № 16 Планиметрия. Часть 2' },
+            { name: 'Задание № 16 Планиметрия. Часть 3' },
+            { name: 'Задание № 16 Планиметрия. Часть 4' },
+            { name: 'Задание № 16 Планиметрия. Часть 5' },
+            { name: 'Задание № 16 Планиметрия. Часть 6' }
         ]
     }
 ];

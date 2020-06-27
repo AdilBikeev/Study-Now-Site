@@ -2,7 +2,7 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Course as CourseType } from '../../../type';
 import { FilterListContainer } from './components/Filter/FilterListContainer';
-import { WorkingPanel } from './components/WorkingPanel/WorkingPanel';
+import { WorkingPanelContainer } from './components/WorkingPanel/WorkingPanelContainer';
 
 type Props = {
     course: CourseType
@@ -59,7 +59,7 @@ export const Course: React.FC<Props> = ({
                 <div className={classes.title}>{course.courseName}</div>
                 <FilterListContainer courseName={course.pathURL}/>
             </div>
-            <WorkingPanel />
+            <WorkingPanelContainer courseName={course.pathURL}/>
         </div>
     )
 };

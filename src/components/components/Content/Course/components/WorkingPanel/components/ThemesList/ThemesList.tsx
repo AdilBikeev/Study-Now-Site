@@ -3,9 +3,10 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ProgressCours } from './components/ProgressCours';
 import { List } from '@material-ui/core';
 import { ThemesListItem } from './components/ThemesListItem';
+import { ThemeCourse } from '../../../../type';
 
 type Props = {
-
+    themesList: Array<ThemeCourse>
 };
 
 const maxSize = '100%';
@@ -42,16 +43,11 @@ const useStyles = makeStyles(createStyles({
 }));
 
 /**
- * TODO: Перенести данные в state
- */
-const list = ['Задание № 16 Планиметрия. Часть 1',
-'Задание № 16 Планиметрия. Часть 2','Задание № 16 Планиметрия. Часть 3','Задание № 16 Планиметрия. Часть 4','Задание № 16 Планиметрия. Часть 5','Задание № 16 Планиметрия. Часть 6'
-];
-
-/**
  * Список тем с прогрессом их изучения
  */
-export const ThemesList: React.FC<Props> = () => {
+export const ThemesList: React.FC<Props> = ({
+    themesList
+}) => {
 
     const classes = useStyles();
 
@@ -59,8 +55,8 @@ export const ThemesList: React.FC<Props> = () => {
         <div className={classes.themesListRoot}>
             <ProgressCours />
             <List className={classes.themesList}>
-                {list.map( (element, index) => <ThemesListItem  numberTheme={(index + 1).toString()}
-                                                                title={element}/>)}
+                {themesList.map( (element, index) => <ThemesListItem  numberTheme={(index + 1).toString()}
+                                                                      title={element.name}/>)}
             </List>
         </div>
     )

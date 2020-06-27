@@ -1,9 +1,10 @@
 ﻿import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ThemesList } from './components/ThemesList/ThemesList';
+import { ThemeCourse } from '../../type';
 
 type Props = {
-
+    themesList: Array<ThemeCourse>
 };
 
 const maxSize = '100%';
@@ -14,13 +15,15 @@ const useStyles = makeStyles(createStyles({
     }
 }));
 
-export const WorkingPanel: React.FC<Props> = () => {
+export const WorkingPanel: React.FC<Props> = ({
+    themesList
+}) => {
 
     const classes = useStyles();
 
     return (
         <div className={classes.workingPanel}>
-            <ThemesList />
+            <ThemesList themesList={themesList}/>
         </div>
     )
 };

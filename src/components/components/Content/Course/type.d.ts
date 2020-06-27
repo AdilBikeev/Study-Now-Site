@@ -7,11 +7,19 @@ export type FilterListItem = {
 };
 
 /**
- * 
+ * Тема курса
  */
-type FilterListForCourse = {
+type ThemeCourse = {
+    name: string // название темы
+}
+
+/**
+ * Описание курса
+ */
+export type CoursesDescription = {
     courseName: string, // название курса
     filterList: Array<FilterListItem> // список фильтров
+    themesList: Array<ThemeCourse> // список тем 
 };
 
 /**
