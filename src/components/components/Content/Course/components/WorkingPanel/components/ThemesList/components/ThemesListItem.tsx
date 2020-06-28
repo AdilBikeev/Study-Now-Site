@@ -4,11 +4,15 @@ import clsx from 'clsx';
 import { ListItem } from '@material-ui/core';
 import ListItemText from '@material-ui/core/ListItemText';
 
+type DispatchProps = {
+    onThemeChange: (index: number) => void
+};
+
 type Props = {
     numberTheme: string,
     title: string,
     isSelectedItem: boolean
-};
+} & DispatchProps;
 
 const useStyles = (isSelectedItem: boolean) => makeStyles(createStyles({
     themesListItem: {
@@ -48,7 +52,8 @@ const useStyles = (isSelectedItem: boolean) => makeStyles(createStyles({
 export const ThemesListItem: React.FC<Props> = ({
     numberTheme,
     title,
-    isSelectedItem
+    isSelectedItem,
+    onThemeChange
 }) => {
 
     const classes = useStyles(isSelectedItem);
@@ -56,7 +61,9 @@ export const ThemesListItem: React.FC<Props> = ({
     return (
         <ListItem className={clsx(classes.themesListItem, {
             [classes.selectedThemesListItem]: isSelectedItem
-        })} button key={title}>
+        })} button 
+            key={title}
+            onClick={() => onThemeChange(Number(numberTheme) - 1)}>
             <div  className={clsx(classes.numberTheme, {
             [classes.selectedTextStyle]: isSelectedItem
         })}>{numberTheme}</div>

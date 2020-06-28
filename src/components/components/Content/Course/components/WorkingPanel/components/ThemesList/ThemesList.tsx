@@ -5,10 +5,14 @@ import { List } from '@material-ui/core';
 import { ThemesListItem } from './components/ThemesListItem';
 import { ThemeCourse } from '../../../../type';
 
+type DispatchProps = {
+    onThemeChange: (index: number) => void
+};
+
 type Props = {
     themesList: Array<ThemeCourse>
     selectedTheme: number
-};
+} & DispatchProps;
 
 const maxSize = '100%';
 
@@ -50,7 +54,8 @@ const useStyles = makeStyles(createStyles({
  */
 export const ThemesList: React.FC<Props> = ({
     themesList,
-    selectedTheme
+    selectedTheme,
+    onThemeChange
 }) => {
 
     const classes = useStyles();
@@ -61,7 +66,8 @@ export const ThemesList: React.FC<Props> = ({
             <List className={classes.themesList}>
                 {themesList.map( (element, index) => <ThemesListItem  numberTheme={(index + 1).toString()}
                                                                       title={element.name}
-                                                                      isSelectedItem={index === selectedTheme}/>)}
+                                                                      isSelectedItem={index === selectedTheme}
+                                                                      onThemeChange={onThemeChange}/>)}
             </List>
         </div>
     )

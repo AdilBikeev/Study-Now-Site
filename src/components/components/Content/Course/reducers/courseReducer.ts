@@ -1,4 +1,5 @@
-﻿import { ActionType } from "../actions";
+﻿import { ON_THEME_CHANGE } from './../actions';
+import { ActionType } from "../actions";
 import { CoursesDescription } from "../type";
 
 const initialStateCourse = {
@@ -33,7 +34,13 @@ const initialStateCourse = {
 };
 
 export const courseReducer = (state = initialStateCourse, action: ActionType): initialStateCourseType => {
+    debugger;
+    let copyState = JSON.parse(JSON.stringify(state)) as initialStateCourseType;
+
     switch (action.type) {
+        case ON_THEME_CHANGE:
+            copyState.selectedTheme = action.selectedTheme;
+            return copyState;
         default:
             return state;
     }

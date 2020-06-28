@@ -2,6 +2,7 @@
 import React from "react";
 import { AppStateType } from "../../../../../store";
 import { WorkingPanel } from './WorkingPanel';
+import { onThemeChange } from '../../actions';
 
 const mapStateToProps = (store: AppStateType) => {
     return {
@@ -18,7 +19,7 @@ type OwnPropsType = {
 };
 
 const mapDispatchToProps = {
-
+    onThemeChange
 };
 
 type Props = ReturnType<typeof mapStateToProps> & OwnPropsType & typeof mapDispatchToProps;
@@ -33,7 +34,8 @@ class WorkingPanelContainerComponent extends React.Component<Props> {
         const themesList = this.props.courses.find(x => this.props.courseName.includes(x.courseName))?.themesList;
 
         return themesList ? <WorkingPanel themesList={themesList}
-                                          selectedTheme={this.props.selectedTheme}/> : <div>ERROR 500</div>;
+                                          selectedTheme={this.props.selectedTheme}
+                                          onThemeChange={this.props.onThemeChange}/> : <div>ERROR 500</div>;
     }
 }
 
