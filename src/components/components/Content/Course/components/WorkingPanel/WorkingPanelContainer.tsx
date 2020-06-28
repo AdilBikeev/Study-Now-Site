@@ -5,7 +5,8 @@ import { WorkingPanel } from './WorkingPanel';
 
 const mapStateToProps = (store: AppStateType) => {
     return {
-        courses: store.course 
+        courses: store.course.courseDescList,
+        selectedTheme: store.course.selectedTheme 
     }
 };
 
@@ -31,7 +32,8 @@ class WorkingPanelContainerComponent extends React.Component<Props> {
  
         const themesList = this.props.courses.find(x => this.props.courseName.includes(x.courseName))?.themesList;
 
-        return themesList ? <WorkingPanel themesList={themesList}/> : <div>ERROR 500</div>;
+        return themesList ? <WorkingPanel themesList={themesList}
+                                          selectedTheme={this.props.selectedTheme}/> : <div>ERROR 500</div>;
     }
 }
 

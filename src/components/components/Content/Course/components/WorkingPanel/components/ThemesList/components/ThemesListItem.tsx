@@ -1,14 +1,16 @@
 ﻿import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import { ListItem } from '@material-ui/core';
 import ListItemText from '@material-ui/core/ListItemText';
 
 type Props = {
     numberTheme: string,
-    title: string
+    title: string,
+    isSelectedItem: boolean
 };
 
-const useStyles = makeStyles(createStyles({
+const useStyles = (isSelectedItem: boolean) => makeStyles(createStyles({
     themesListItem: {
         display: 'flex',
         justifyContent: 'flex-start',
@@ -20,6 +22,12 @@ const useStyles = makeStyles(createStyles({
             backgroundColor: '#AFECC8',
         }
     },
+    selectedThemesListItem: {
+        backgroundColor: '#F4E02D',
+        '&:hover': {
+            backgroundColor: '#F4E02D',
+        }
+    },
     numberTheme: {
         width: '50px',
         fontSize: '30px',
@@ -28,22 +36,33 @@ const useStyles = makeStyles(createStyles({
         color: '#ABABAB',
         marginRight: '10px'
     },
+    selectedTextStyle: {
+        color: '#FFFFFF'
+    },
     titleTheme: {
         
-    }
-}));
+    },
+
+}))();
 
 export const ThemesListItem: React.FC<Props> = ({
     numberTheme,
-    title
+    title,
+    isSelectedItem
 }) => {
 
-    const classes = useStyles();
+    const classes = useStyles(isSelectedItem);
 
     return (
-        <ListItem className={classes.themesListItem} button key={title}>
-            <div  className={classes.numberTheme}>{numberTheme}</div>
-            <ListItemText  className={classes.titleTheme} primary={title} />
+        <ListItem className={clsx(classes.themesListItem, {
+            [classes.selectedThemesListItem]: isSelectedItem
+        })} button key={title}>
+            <div  className={clsx(classes.numberTheme, {
+            [classes.selectedTextStyle]: isSelectedItem
+        })}>{numberTheme}</div>
+            <ListItemText  className={clsx(classes.titleTheme, {
+            [classes.selectedTextStyle]: isSelectedItem
+        })} primary={title} />
         </ListItem>
     );
 };

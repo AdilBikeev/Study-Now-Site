@@ -7,6 +7,7 @@ import { ThemeCourse } from '../../../../type';
 
 type Props = {
     themesList: Array<ThemeCourse>
+    selectedTheme: number
 };
 
 const maxSize = '100%';
@@ -44,9 +45,12 @@ const useStyles = makeStyles(createStyles({
 
 /**
  * Список тем с прогрессом их изучения
+ * @param themesList список тем
+ * @param selectedTheme индекс выбранной темы
  */
 export const ThemesList: React.FC<Props> = ({
-    themesList
+    themesList,
+    selectedTheme
 }) => {
 
     const classes = useStyles();
@@ -56,7 +60,8 @@ export const ThemesList: React.FC<Props> = ({
             <ProgressCours />
             <List className={classes.themesList}>
                 {themesList.map( (element, index) => <ThemesListItem  numberTheme={(index + 1).toString()}
-                                                                      title={element.name}/>)}
+                                                                      title={element.name}
+                                                                      isSelectedItem={index === selectedTheme}/>)}
             </List>
         </div>
     )

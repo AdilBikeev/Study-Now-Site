@@ -5,7 +5,7 @@ import { AppStateType } from "../../../../../store";
 
 const mapStateToProps = (store: AppStateType) => {
     return {
-        filterListForCourse: store.course 
+        filterListForCourse: store.course.courseDescList 
     }
 };
 

@@ -5,6 +5,7 @@ import { ThemeCourse } from '../../type';
 
 type Props = {
     themesList: Array<ThemeCourse>
+    selectedTheme: number
 };
 
 const maxSize = '100%';
@@ -16,14 +17,16 @@ const useStyles = makeStyles(createStyles({
 }));
 
 export const WorkingPanel: React.FC<Props> = ({
-    themesList
+    themesList,
+    selectedTheme
 }) => {
 
     const classes = useStyles();
 
     return (
         <div className={classes.workingPanel}>
-            <ThemesList themesList={themesList}/>
+            <ThemesList themesList={themesList}
+                        selectedTheme={selectedTheme}/>
         </div>
     )
 };
