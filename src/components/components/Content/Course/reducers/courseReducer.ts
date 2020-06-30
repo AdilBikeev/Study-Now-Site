@@ -34,7 +34,7 @@ const initialStateCourse = {
 };
 
 export const courseReducer = (state = initialStateCourse, action: ActionType): initialStateCourseType => {
-    debugger;
+
     let copyState = JSON.parse(JSON.stringify(state)) as initialStateCourseType;
 
     switch (action.type) {

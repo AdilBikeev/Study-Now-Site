@@ -2,6 +2,7 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ThemesList } from './components/ThemesList/ThemesList';
 import { ThemeCourse } from '../../type';
+import { ThemeWorkingPanel } from './components/ThemeWorkingPanel/ThemeWorkingPanel';
 
 type DispatchProps = {
     onThemeChange: (index: number) => void
@@ -16,7 +17,8 @@ const maxSize = '100%';
 
 const useStyles = makeStyles(createStyles({
     workingPanel: {
-        height: maxSize
+        height: maxSize,
+        display: 'flex',
     }
 }));
 
@@ -33,6 +35,7 @@ export const WorkingPanel: React.FC<Props> = ({
             <ThemesList themesList={themesList}
                         selectedTheme={selectedTheme}
                         onThemeChange={onThemeChange}/>
+            <ThemeWorkingPanel />
         </div>
     )
 };
