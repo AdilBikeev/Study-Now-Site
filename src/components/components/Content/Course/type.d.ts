@@ -10,7 +10,7 @@ export type FilterListItem = {
  * Подтема курса
  */
 type SubThemeCourse = {
-
+    completed: boolean // указывает пройдена ли подтема
 }
 
 /**

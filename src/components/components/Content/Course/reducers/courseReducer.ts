@@ -21,13 +21,27 @@ const initialStateCourse = {
             themesList: [
                 { 
                     name: 'Задание № 16 Планиметрия. Часть 1',
-                    subThemesCourse: []
+                    subThemesCourse: [
+                        { completed: false },
+                        { completed: true },
+                        { completed: true }
+                    ]
                 },
-
                 { 
                     name: 'Задание № 16 Планиметрия. Часть 2',
-                    subThemesCourse: []
+                    subThemesCourse: [
+                        { completed: false },
+                    ]
                 },
+                { 
+                    name: 'Задание № 16 Планиметрия. Часть 3',
+                    subThemesCourse: [
+                        { completed: false },
+                        { completed: false },
+                        { completed: false },
+                        { completed: false },
+                    ]
+                }
             ]
         }
     ] as Array<CoursesDescription>
