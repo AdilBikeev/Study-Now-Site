@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { List, ListItem } from '@material-ui/core';
+import clsx from 'clsx';
 
 type Props = {
 };
@@ -27,8 +28,11 @@ const useStyles = makeStyles(createStyles({
         padding: '0px',
         fontSize: '35px',
         '&:hover': {
-            backgroundColor: '#F4E02D',
+            backgroundColor: '#AFECC8',
         }
+    },
+    subThemesListItem_selected: {
+        backgroundColor: '#F4E02D'
     },
     subThemesListItemText: {
         margin: '0 auto'
@@ -50,7 +54,9 @@ export const SubThemesList: React.FC<Props> = () => {
 
     return (
         <List className={classes.subThemesList}>
-            { subThemesList.map( (subTheme, index) => (<ListItem className={classes.subThemesListItem}
+            { subThemesList.map( (subTheme, index) => (<ListItem className={clsx(classes.subThemesListItem, {
+                [classes.subThemesListItem_selected]: subTheme.completed
+            })}
                                                                     key={index} button>
                 <span className={classes.subThemesListItemText}>{index}</span>
             </ListItem>))}

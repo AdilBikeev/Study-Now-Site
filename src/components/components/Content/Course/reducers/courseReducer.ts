@@ -1,9 +1,6 @@
-﻿import { ON_THEME_CHANGE } from './../actions';
-import { ActionType } from "../actions";
-import { CoursesDescription } from "../type";
+﻿import { CoursesDescription } from "../type";
 
 const initialStateCourse = {
-    selectedTheme: 0,
     courseDescList: [
         {
             courseName: 'School',
@@ -22,25 +19,25 @@ const initialStateCourse = {
                 },
             ],
             themesList: [
-                { name: 'Задание № 16 Планиметрия. Часть 1' },
-                { name: 'Задание № 16 Планиметрия. Часть 2' },
-                { name: 'Задание № 16 Планиметрия. Часть 3' },
-                { name: 'Задание № 16 Планиметрия. Часть 4' },
-                { name: 'Задание № 16 Планиметрия. Часть 5' },
-                { name: 'Задание № 16 Планиметрия. Часть 6' }
+                { 
+                    name: 'Задание № 16 Планиметрия. Часть 1',
+                    subThemesCourse: []
+                },
+
+                { 
+                    name: 'Задание № 16 Планиметрия. Часть 2',
+                    subThemesCourse: []
+                },
             ]
         }
     ] as Array<CoursesDescription>
 };
 
-export const courseReducer = (state = initialStateCourse, action: ActionType): initialStateCourseType => {
+export const courseReducer = (state = initialStateCourse, action: any): initialStateCourseType => {
 
     let copyState = JSON.parse(JSON.stringify(state)) as initialStateCourseType;
 
     switch (action.type) {
-        case ON_THEME_CHANGE:
-            copyState.selectedTheme = action.selectedTheme;
-            return copyState;
         default:
             return state;
     }

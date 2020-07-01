@@ -11,7 +11,7 @@ type DispatchProps = {
 
 type Props = {
     themesList: Array<ThemeCourse>
-    selectedTheme: number
+    selectedTheme: number | undefined
 } & DispatchProps;
 
 const maxSize = '100%';
@@ -64,7 +64,8 @@ export const ThemesList: React.FC<Props> = ({
         <div className={classes.themesListRoot}>
             <ProgressCours />
             <List className={classes.themesList}>
-                {themesList.map( (element, index) => <ThemesListItem  numberTheme={(index + 1).toString()}
+                {themesList.map( (element, index) => <ThemesListItem  key={index + 1}
+                                                                      numberTheme={(index + 1).toString()}
                                                                       title={element.name}
                                                                       isSelectedItem={index === selectedTheme}
                                                                       onThemeChange={onThemeChange}/>)}

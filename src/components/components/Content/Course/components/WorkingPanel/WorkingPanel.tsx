@@ -1,16 +1,15 @@
-﻿import React from 'react';
+﻿import React, { useState } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ThemesList } from './components/ThemesList/ThemesList';
 import { ThemeCourse } from '../../type';
 import { ThemeWorkingPanel } from './components/ThemeWorkingPanel/ThemeWorkingPanel';
 
 type DispatchProps = {
-    onThemeChange: (index: number) => void
+
 };
 
 type Props = {
     themesList: Array<ThemeCourse>
-    selectedTheme: number,
 } & DispatchProps;
 
 const maxSize = '100%';
@@ -23,12 +22,12 @@ const useStyles = makeStyles(createStyles({
 }));
 
 export const WorkingPanel: React.FC<Props> = ({
-    themesList,
-    selectedTheme,
-    onThemeChange
+    themesList
 }) => {
 
     const classes = useStyles();
+
+    const [selectedTheme, onThemeChange] = useState(0);
 
     return (
         <div className={classes.workingPanel}>

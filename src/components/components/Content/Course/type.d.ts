@@ -7,10 +7,18 @@ export type FilterListItem = {
 };
 
 /**
+ * Подтема курса
+ */
+type SubThemeCourse = {
+
+}
+
+/**
  * Тема курса
  */
 type ThemeCourse = {
     name: string // название темы
+    subThemesCourse: Array<SubThemeCourse>, // подтемы курса
 }
 
 /**

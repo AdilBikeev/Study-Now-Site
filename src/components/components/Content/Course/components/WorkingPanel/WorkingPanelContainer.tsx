@@ -2,12 +2,10 @@
 import React from "react";
 import { AppStateType } from "../../../../../store";
 import { WorkingPanel } from './WorkingPanel';
-import { onThemeChange } from '../../actions';
 
 const mapStateToProps = (store: AppStateType) => {
     return {
-        courses: store.course.courseDescList,
-        selectedTheme: store.course.selectedTheme 
+        courses: store.course.courseDescList
     }
 };
 
@@ -19,7 +17,6 @@ type OwnPropsType = {
 };
 
 const mapDispatchToProps = {
-    onThemeChange
 };
 
 type Props = ReturnType<typeof mapStateToProps> & OwnPropsType & typeof mapDispatchToProps;
@@ -30,14 +27,12 @@ type Props = ReturnType<typeof mapStateToProps> & OwnPropsType & typeof mapDispa
  */
 class WorkingPanelContainerComponent extends React.Component<Props> {
     render() {
- 
-        const themesList = this.props.courses.find(x => this.props.courseName.includes(x.courseName))?.themesList;
+        
+        const course = this.props.courses.find(x => this.props.courseName.includes(x.courseName));
+        const themesList = course?.themesList;
 
-        return themesList ? <WorkingPanel themesList={themesList}
-                                          selectedTheme={this.props.selectedTheme}
-                                          onThemeChange={this.props.onThemeChange}/> : <div>ERROR 500</div>;
+        return themesList ? <WorkingPanel themesList={themesList}/> : <div>ERROR 500</div>;
     }
 }
-
 
 export const WorkingPanelContainer = connect(mapStateToProps, mapDispatchToProps)(WorkingPanelContainerComponent);
