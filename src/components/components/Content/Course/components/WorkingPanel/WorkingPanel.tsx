@@ -28,16 +28,13 @@ export const WorkingPanel: React.FC<Props> = ({
     const classes = useStyles();
 
     const [selectedTheme, onThemeChange] = useState(0); // выбранная тема
-    const [selectedSubTheme, onSubThemeChange] = useState(0); // выбранная под-тема
 
     return (
         <div className={classes.workingPanel}>
             <ThemesList themesList={themesList}
                         selectedTheme={selectedTheme}
                         onThemeChange={onThemeChange}/>
-            <ThemeWorkingPanel subThemesList={themesList[selectedTheme].subThemesCourse}
-                               selectedSubTheme={selectedSubTheme}
-                               onSubThemeChange={onSubThemeChange} />
+            <ThemeWorkingPanel subThemesList={themesList[selectedTheme].subThemesCourse}/>
         </div>
     )
 };
