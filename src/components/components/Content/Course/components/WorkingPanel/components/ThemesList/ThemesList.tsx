@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { ProgressCours } from './components/ProgressCours';
+import { ProgressCours } from './components/ProgressCourse/ProgressCourse';
 import { List } from '@material-ui/core';
 import { ThemesListItem } from './components/ThemesListItem';
 import { ThemeCourse } from '../../../../type';
@@ -62,7 +62,7 @@ export const ThemesList: React.FC<Props> = ({
 
     return (
         <div className={classes.themesListRoot}>
-            <ProgressCours />
+            <ProgressCours themesList={themesList}/>
             <List className={classes.themesList}>
                 {themesList.map( (element, index) => <ThemesListItem  key={index + 1}
                                                                       numberTheme={(index + 1).toString()}

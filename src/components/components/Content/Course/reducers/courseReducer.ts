@@ -42,15 +42,12 @@ const initialStateCourse = {
                         { completed: false },
                     ]
                 }
-            ]
+            ],
         }
     ] as Array<CoursesDescription>
 };
 
 export const courseReducer = (state = initialStateCourse, action: any): initialStateCourseType => {
-
-    let copyState = JSON.parse(JSON.stringify(state)) as initialStateCourseType;
-
     switch (action.type) {
         default:
             return state;

@@ -28,6 +28,7 @@ export type CoursesDescription = {
     courseName: string, // название курса
     filterList: Array<FilterListItem> // список фильтров
     themesList: Array<ThemeCourse> // список тем 
+    progressIcon: string // путь к иконке, отражающую степень знаний курса
 };
 
 /**
