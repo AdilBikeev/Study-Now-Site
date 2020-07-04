@@ -22,7 +22,8 @@ const useStyles = (levelBg: string) => makeStyles(createStyles({
     height: 90
   },
   progressStat: {
-    fontSize: '1.5vw'
+    width: '20%',
+    fontSize: '1vw'
   }
 }))();
 
@@ -32,6 +33,7 @@ const BorderLinearProgress = withStyles((theme: Theme) =>
       width: '10vw',
       height: 30,
       borderRadius: 5,
+      margin: 'auto 20px'
     },
     colorPrimary: {
       backgroundColor: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
@@ -43,6 +45,10 @@ const BorderLinearProgress = withStyles((theme: Theme) =>
   }),
 )(LinearProgress);
 
+/**
+ * Отражает прогресс изучения курса.
+ * @param themesList Список тем курса.
+ */
 export const ProgressCours: React.FC<Props> = ({
   themesList
 }) => {

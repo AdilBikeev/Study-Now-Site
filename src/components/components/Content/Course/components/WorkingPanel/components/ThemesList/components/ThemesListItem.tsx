@@ -44,11 +44,18 @@ const useStyles = (isSelectedItem: boolean) => makeStyles(createStyles({
         color: '#FFFFFF'
     },
     titleTheme: {
-        
+        color: '#000000'
     },
 
 }))();
 
+/**
+ * Элемент списка тем.
+ * @param numberTheme Номер темы.
+ * @param title Название темы.
+ * @param isSelectedItem Флаг показывающий выбран ли элемент.
+ * @param onThemeChange Событие вызывающийся при изменении выбранной темы.
+ */
 export const ThemesListItem: React.FC<Props> = ({
     numberTheme,
     title,

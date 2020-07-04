@@ -3,6 +3,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ThemesList } from './components/ThemesList/ThemesList';
 import { ThemeCourse } from '../../type';
 import { ThemeWorkingPanel } from './components/ThemeWorkingPanel/ThemeWorkingPanel';
+import { Hidden } from '@material-ui/core';
 
 type DispatchProps = {
 
@@ -21,6 +22,10 @@ const useStyles = makeStyles(createStyles({
     }
 }));
 
+/**
+ * Рабочая область
+ * @param themesList Список тем курса. 
+ */
 export const WorkingPanel: React.FC<Props> = ({
     themesList
 }) => {
@@ -31,10 +36,15 @@ export const WorkingPanel: React.FC<Props> = ({
 
     return (
         <div className={classes.workingPanel}>
-            <ThemesList themesList={themesList}
-                        selectedTheme={selectedTheme}
-                        onThemeChange={onThemeChange}/>
-            <ThemeWorkingPanel subThemesList={themesList[selectedTheme].subThemesCourse}/>
+            <Hidden lgDown>
+                <ThemesList themesList={themesList}
+                    selectedTheme={selectedTheme}
+                    onThemeChange={onThemeChange} />
+            </Hidden>
+            <ThemeWorkingPanel subThemesList={themesList[selectedTheme].subThemesCourse} 
+                               themesList={themesList}
+                               selectedTheme={selectedTheme}
+                               onThemeChange={onThemeChange}/>
         </div>
     )
 };
