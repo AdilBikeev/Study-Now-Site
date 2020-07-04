@@ -4,6 +4,7 @@ import { Box, Typography, Button } from '@material-ui/core';
 
 import { Course } from '../../../../type';
 import { ListSubCourse } from './ListSubCourses';
+import { NavLink } from 'react-router-dom';
 
 type Props = {
     courses: Array<Course>
@@ -73,7 +74,9 @@ export const ListBoxCourses: React.FC<Props> = ({
                 <Box>
                     <Button className={classes.selectCourseBtn}
                         variant="contained"
-                        color={selectCourseBtn.color}>{selectCourseBtn.text}</Button>
+                        color={selectCourseBtn.color}
+                        component={NavLink}
+                        to={x.pathURL}>{selectCourseBtn.text}</Button>
                 </Box>
             </Box>)
             )}

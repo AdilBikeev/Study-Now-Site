@@ -41,7 +41,8 @@ export const CarouselMain: React.FC<Props> = ({
         className: classes.itemsMedia,
         children: <CarouselItem title={x.title}
         bgImage={x.carouselIamge}
-        btnText='Перейти'/>
+        btnText='Перейти'
+        coursePathURL={x.coursePathURL}/>
     }));
 
     return (

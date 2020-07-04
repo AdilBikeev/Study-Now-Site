@@ -38,7 +38,8 @@ const HomeConstainerComponent: React.FC<Props> = ({
     const carouselItems = courses.map(x => ({
         title: x.courseName,
         subTitle: x.description,
-        carouselIamge: x.carouselIamge
+        carouselIamge: x.carouselIamge,
+        coursePathURL: x.pathURL
     }));
 
     return (<div className={classes.content}>

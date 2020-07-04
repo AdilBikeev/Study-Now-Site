@@ -56,7 +56,6 @@ export const NavigationItems: React.FC<Props> = ({
                         <Button
                             className={classes.boxBtnItems}
                             component={NavLink}
-                            onClick={() => { }}
                             to={x.coursePathURL}>{x.courseName}</Button>
                     </Box>
                 ))}

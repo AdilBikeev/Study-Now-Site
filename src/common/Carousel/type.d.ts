@@ -1,7 +1,8 @@
 ﻿export type CarouselItemType = {
     title: string,
     subTitle: string,
-    carouselIamge: string
+    carouselIamge: string,
+    coursePathURL: string
 };
 
 export type Media = {

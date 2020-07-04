@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Button, Box } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 
 const maxSize = '100%';
 const baseFontFamily = 'Poly';
@@ -39,7 +40,8 @@ const useStyles = (bgImage: string) => makeStyles(createStyles({
 type Props = {
     title: string,
     bgImage: string,
-    btnText: string | null
+    btnText: string | null,
+    coursePathURL: string
 }
 
 /**
@@ -47,11 +49,13 @@ type Props = {
  * @param title Заголовок, оображаемый на заданном элементе карусели 
  * @param bgImage Фоновая картинка
  * @param btnText Текст, отображаемый на кнопке (опциональный)
+ * @param coursePathURL URL путь к курсу.
  */
 export const CarouselItem: React.FC<Props> = ({
     title,
     bgImage,
-    btnText
+    btnText,
+    coursePathURL
 }) => {
 
     const classes = useStyles(bgImage);
@@ -60,7 +64,9 @@ export const CarouselItem: React.FC<Props> = ({
         <label className={classes.header}>{title}</label>
         <Box className={classes.boxBtn}>
             <Button className={classes.centerBtn}
-                variant="contained">{btnText}</Button>
+                variant="contained"
+                component={NavLink}
+                to={coursePathURL}>{btnText}</Button>
         </Box>
     </div>)
 };
