@@ -2,15 +2,19 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import TextField from "@material-ui/core/TextField";
-import { Button } from '@material-ui/core';
+import { Button, Theme } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import Grow from '@material-ui/core/Grow';
+import { ResultTitleHOC } from './hoc/ResultTitleHOC';
 
 const maxSize = '100%';
 
 type Props = {
-    question: string
+    question: string,
+    answer: string
 };
 
-const useStyles = makeStyles(createStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
     content: {
         width: maxSize
     },
@@ -32,8 +36,9 @@ const useStyles = makeStyles(createStyles({
         color: '#FFFFFF',
         backgroundColor: '#4BD37B',
         borderRadius: '50px',
-        marginTop: 10,
-        marginRight: 10,
+        marginTop: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        padding: theme.spacing(2),
         fontSize: '1.3em',
         '&:hover': {
             backgroundColor: '#4BD37B',
@@ -50,42 +55,81 @@ const useStyles = makeStyles(createStyles({
         '&:hover': {
             backgroundColor: '#EF6767',
         }
-    }
+    },
+    content_result: {
+        display: 'flex',
+        flexFlow: 'row wrap',
+        margin: theme.spacing(1),
+        padding: theme.spacing(1),
+    },
+    content_solution: {
+        margin: theme.spacing(1),
+        padding: theme.spacing(1),
+        border: '5px solid black',
+        borderRadius: 12
+    },
 }));
 
 /**
  * Представление для выполнении практики по заданной под-теме.
  * @param question Вопрос по заданной под-теме.
+ * @param answer Ответ по заданной под-теме.
  */
 export const PracticeTabPanel: React.FC<Props> = ({
-    question
+    question,
+    answer
 }) => {
     const classes = useStyles();
 
-    const [answer, setAnswer] = React.useState('');
+    const [userAnswer, setUserAnswer] = React.useState('');
+    const [solutionVisible, setVisible] = React.useState(false);
+
+    const toggleVisibleSolution = () => {
+        setVisible(!solutionVisible);
+    };
 
     const onChangeAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setAnswer(event.target.value);
+        setUserAnswer(event.target.value);
     };
 
     return (
         <div className={classes.content}>
             <div className={classes.content_question}>{question}</div>
+
             <TextField
                 label="Ответ"
                 multiline
                 rows={1}
                 variant="outlined"
-                value={answer}
+                value={userAnswer}
                 onChange={onChangeAnswer}
                 className={classes.content_answer}
             />
+
             <div className={classes.content_buttons}>
                 <Button className={clsx(classes.content_buttons_button, classes.button_confirm)}
-                    variant="contained">Подтвердить</Button>
+                    variant="contained"
+                    onClick={() => setVisible(true)}>Подтвердить</Button>
                 <Button className={clsx(classes.content_buttons_button, classes.button_showSolution)}
-                    variant="contained">Посмотреть решение</Button>
+                    variant="contained"
+                    onClick={toggleVisibleSolution}>{solutionVisible ? 'Скрыть решение' : 'Посмотреть решение'}</Button>
             </div>
+
+            <Grow
+                in={solutionVisible}
+                style={{ transformOrigin: '0 0 0' }}
+                {...(solutionVisible ? { timeout: 1000 } : {})}
+            >
+                <div style={{ marginTop: 70 }}>
+                    <div className={classes.content_result}>
+                       <ResultTitleHOC userAnswer={userAnswer}
+                                       answer={answer}/>
+                    </div>
+                    <Paper elevation={4} className={classes.content_solution}>
+                        <div>Ответ: {answer}</div>
+                    </Paper>
+                </div>
+            </Grow>
         </div>
     );
 };

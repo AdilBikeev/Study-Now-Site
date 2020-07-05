@@ -12,7 +12,8 @@ export type FilterListItem = {
 type SubThemeCourse = {
     completed: boolean, // указывает пройдена ли подтема
     question: string, // вопрос по заданной под-теме
-    theory: string // теория по заданной под-теме
+    theory: string, // теория по заданной под-теме
+    answer: string // Ответ по заданной под-теме
 }
 
 /**

@@ -19,7 +19,7 @@ const maxSize = '100%';
 const useStyles = makeStyles(createStyles({
     themesListRoot: {
         minHeight: '600px',
-        height: maxSize,
+        //height: maxSize,
         width: '520px',
         maxWidth: maxSize,
         backgroundColor: '#D5EDDF',

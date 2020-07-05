@@ -26,7 +26,8 @@ const initialStateCourse = {
                             completed: false,
                             question: `Решите уравение 
                                        7x-9=40.`,
-                            theory: 'Гуглите'
+                            theory: 'Гуглите',
+                            answer: '7'
                         },
                     ]
                 },

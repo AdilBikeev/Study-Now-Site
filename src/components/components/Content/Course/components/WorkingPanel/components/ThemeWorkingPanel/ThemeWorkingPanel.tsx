@@ -22,7 +22,7 @@ const useStyles = makeStyles(createStyles({
     themeWorkingPanel: {
         height: maxSize,
         width: maxSize,
-        minHeight: '710px',
+        minHeight: '600px',
     }
 }));
 
@@ -55,7 +55,8 @@ export const ThemeWorkingPanel: React.FC<Props> = ({
     ];
 
     const tabPanels: Array<TabPanelType> = [
-        { component: <PracticeTabPanel question={subThemesList[selectedSubTheme].question} /> },
+        { component: <PracticeTabPanel question={subThemesList[selectedSubTheme].question}
+                                       answer={subThemesList[selectedSubTheme].answer} /> },
         { component: <div>{subThemesList[selectedSubTheme].theory}</div> },
     ];
 
