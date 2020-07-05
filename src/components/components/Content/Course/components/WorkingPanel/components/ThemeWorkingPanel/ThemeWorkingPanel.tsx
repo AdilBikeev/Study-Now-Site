@@ -3,6 +3,8 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { SubThemesList } from './components/SubThemesList';
 import { SubThemeCourse, ThemeCourse } from '../../../../type';
 import { DropThemesMenu } from './components/DropThemesMenu';
+import { FullWidthTabs } from 'common/TabPanel/TabPanel';
+import { PracticeTabPanel } from './components/PracticeTabPanel';
 
 type DispatchProps = {
     onThemeChange: (index: number) => void
@@ -21,7 +23,6 @@ const useStyles = makeStyles(createStyles({
         height: maxSize,
         width: maxSize,
         minHeight: '710px',
-        backgroundColor: 'blue'
     }
 }));
 
@@ -48,19 +49,30 @@ export const ThemeWorkingPanel: React.FC<Props> = ({
         onSubThemeChange(0);
     }
 
+    const tabItems: Array<TabItemType> = [
+        { label: 'Практика' },
+        { label: 'Теория' }
+    ];
+
+    const tabPanels: Array<TabPanelType> = [
+        { component: <PracticeTabPanel question={subThemesList[selectedSubTheme].question} /> },
+        { component: <div>{subThemesList[selectedSubTheme].theory}</div> },
+    ];
+
     return (
         <div className={classes.themeWorkingPanel}>
             <SubThemesList subThemesList={subThemesList}
                 selectedSubTheme={selectedSubTheme}
                 onSubThemeChange={onSubThemeChange}
                 toggleDrawer={toggleDrawer} />
-
+            <FullWidthTabs tabItems={tabItems}
+                tabPanels={tabPanels} />
             <React.Fragment>
                 <DropThemesMenu isOpen={isOpen}
-                                toggleDropRightMenu={toggleDrawer} 
-                                themesList={themesList}
-                                selectedTheme={selectedTheme}
-                                onThemeChange={onThemeChange}/>
+                    toggleDropRightMenu={toggleDrawer}
+                    themesList={themesList}
+                    selectedTheme={selectedTheme}
+                    onThemeChange={onThemeChange} />
             </React.Fragment>
         </div>
     )

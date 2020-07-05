@@ -22,26 +22,14 @@ const initialStateCourse = {
                 { 
                     name: 'Задание № 16 Планиметрия. Часть 1',
                     subThemesCourse: [
-                        { completed: false },
-                        { completed: true },
-                        { completed: true }
+                        { 
+                            completed: false,
+                            question: `Решите уравение 
+                                       7x-9=40.`,
+                            theory: 'Гуглите'
+                        },
                     ]
                 },
-                { 
-                    name: 'Задание № 16 Планиметрия. Часть 2',
-                    subThemesCourse: [
-                        { completed: false },
-                    ]
-                },
-                { 
-                    name: 'Задание № 16 Планиметрия. Часть 3',
-                    subThemesCourse: [
-                        { completed: false },
-                        { completed: false },
-                        { completed: false },
-                        { completed: false },
-                    ]
-                }
             ],
         }
     ] as Array<CoursesDescription>
