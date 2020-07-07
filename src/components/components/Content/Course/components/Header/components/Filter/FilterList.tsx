@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import { makeStyles, createStyles, withStyles, Theme } from '@material-ui/core/styles';
-import { FilterListItem, FilterValuesDictionary } from '../../../../type';
+import { FilterValuesDictionary, FilterListItem } from '../../../../type';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -87,7 +87,7 @@ export const FilterList: React.FC<Props> = ({
     const [filters, setFilterValue] = React.useState(getFilterState());
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>, keyFilter: string) => {
-        debugger;
+
         let filterValueChange = { ...filters };
 
         filterValueChange[keyFilter] =  event.target.value as string;

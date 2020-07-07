@@ -1,8 +1,13 @@
-﻿/**
- * Описание единного фильтра курса
+﻿import { courseFilterList } from './data/School/School_themesList';
+import { coursefilterList } from './data/courseFilterList';
+
+/**
+ * Словарь фильтров
+ * @key Наименвоание фильтра
+ * @value Массив доступных значений фильтра
  */
 export type FilterListItem = {
-    placeholder: string, // текст/подсказка для фильтра
+    placeholder: coursefilterList, // текст/подсказка для фильтра
     values: Array<string> // набор возможных значений фильтра
 };
 
@@ -20,7 +25,7 @@ type SubThemeCourse = {
  * Тема курса
  */
 type ThemeCourse = {
-    name: string // название темы
+    name: courseFilterList // название темы
     subThemesCourse: Array<SubThemeCourse>, // подтемы курса
 }
 
@@ -28,7 +33,7 @@ type ThemeCourse = {
  * Описание курса
  */
 export type CoursesDescription = {
-    courseName: string, // название курса
+    courseName: 'School', // название курса
     filterList: Array<FilterListItem> // список фильтров
     themesList: Array<ThemeCourse> // список тем 
     progressIcon: string // путь к иконке, отражающую степень знаний курса

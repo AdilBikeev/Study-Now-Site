@@ -1,37 +1,13 @@
 ﻿import { CoursesDescription } from "../type";
+import { School_filterList } from "../data/School/School_filterList";
+import { School_themesList } from "../data/School/School_themesList";
 
 const initialStateCourse = {
     courseDescList: [
         {
             courseName: 'School',
-            filterList: [
-                {
-                    placeholder: 'Класс',
-                    values: ['11 класс']
-                },
-                {
-                    placeholder: 'Предмет',
-                    values: ['Математика']
-                },
-                {
-                    placeholder: 'Цель',
-                    values: ['ОГЭ', 'ЕГЭ']
-                },
-            ],
-            themesList: [
-                { 
-                    name: 'Задание № 16 Планиметрия. Часть 1',
-                    subThemesCourse: [
-                        { 
-                            completed: false,
-                            question: `Решите уравение 
-                                       7x-9=40.`,
-                            theory: 'Гуглите',
-                            answer: '7'
-                        },
-                    ]
-                },
-            ],
+            filterList: School_filterList,
+            themesList: School_themesList,
         }
     ] as Array<CoursesDescription>
 };
