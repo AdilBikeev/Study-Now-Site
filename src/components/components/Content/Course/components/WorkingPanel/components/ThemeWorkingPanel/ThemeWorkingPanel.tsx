@@ -56,7 +56,8 @@ export const ThemeWorkingPanel: React.FC<Props> = ({
 
     const tabPanels: Array<TabPanelType> = [
         { component: <PracticeTabPanel question={subThemesList[selectedSubTheme].question}
-                                       answer={subThemesList[selectedSubTheme].answer} /> },
+                                       answer={subThemesList[selectedSubTheme].answer}
+                                       generateInputData={subThemesList[selectedSubTheme].generateInputData} /> },
         { component: <div>{subThemesList[selectedSubTheme].theory}</div> },
     ];
 

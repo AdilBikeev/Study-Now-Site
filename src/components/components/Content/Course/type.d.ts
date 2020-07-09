@@ -12,11 +12,22 @@ export type FilterListItem = {
 };
 
 /**
+ * Объект автосгенерированного теста по заданной под-теме курса.
+ */
+type AutoGenerateSubThemeCourse = {
+    question: string, // вопрос по заданной под-теме
+    solution: string, // решение под-темы
+    answer: string // Ответ по заданной под-теме
+}
+
+/**
  * Подтема курса
  */
 type SubThemeCourse = {
     completed: boolean, // указывает пройдена ли подтема
     question: string, // вопрос по заданной под-теме
+    solution: string, // решение под-темы
+    generateInputData: () => AutoGenerateSubThemeCourse, // генерирует входные данные для задачи
     theory: string, // теория по заданной под-теме
     answer: string // Ответ по заданной под-теме
 }

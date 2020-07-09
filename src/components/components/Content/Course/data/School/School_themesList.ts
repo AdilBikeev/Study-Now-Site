@@ -1,4 +1,5 @@
-﻿import { ThemeCourse } from "../../type";
+﻿import { ThemeCourse, AutoGenerateSubThemeCourse } from "../../type";
+import { getRandomArbitrary } from "utils/randomHelper";
 
 /**
  * Название темы курса школьников.
@@ -13,18 +14,34 @@ export const School_themesList: ThemeCourse[] = [
                 completed: false,
                 question: `Килограмм орехов стоит 75 рублей. 
                 Маша купила 4 кг 400 г орехов. 
-                Сколько рублей сдачи она должна получить с 350 рублей?`,
+                Сколько рублей сдачи она должна получить с 350 рублей? (Если ответом явл. не целое число - тогда отбросьте дробную часть)`,
+                solution: `Найдем стоимость покупки: 4 кг 400 г орехов стоит 4,4 · 75 = 330 рублей. Значит, 
+                с 350 рублей Маша получит сдачи 350 − 330 = 20 рублей.`,
+                generateInputData: (): AutoGenerateSubThemeCourse => {
+                    let answer, nutsPrice, nutsKilo, nutsGram, nutsWeight, amount_value = 0;
+
+                    do {
+                        nutsPrice = getRandomArbitrary(50, 100);
+                        nutsKilo = getRandomArbitrary(1, 5);
+                        nutsGram = getRandomArbitrary(100, 999);
+                        nutsWeight = (nutsKilo + nutsGram/1000);
+                        amount_value = getRandomArbitrary(350, 5000);
+    
+                        answer = Math.floor(amount_value - nutsWeight * nutsPrice);
+                    } while (answer < 0);
+
+
+                    return {
+                        question: `Килограмм орехов стоит ${nutsPrice} рублей. 
+                        Маша купила ${nutsKilo} кг ${nutsGram} г. орехов. 
+                        Сколько рублей сдачи она должна получить с ${amount_value} рублей? (Если ответом явл. не целое число - тогда отбросьте дробную часть)`,
+                        solution: `Найдем стоимость покупки: ${nutsKilo} кг ${nutsGram} г орехов стоит ${nutsWeight} · ${nutsPrice} = ${nutsWeight * nutsPrice} рублей. Значит, 
+                        с ${nutsWeight * nutsPrice} рублей Маша получит сдачи ${amount_value} − ${nutsWeight * nutsPrice} = ${answer} рублей.`,
+                        answer: answer.toString()
+                    }
+                },
                 theory: 'Гуглите',
                 answer: '20'
-            },
-            {
-                completed: false,
-                question: `Павел Иванович купил американский автомобиль, 
-                на спидометре которого скорость измеряется в милях в час. 
-                Американская миля равна 1609 м. Какова скорость автомобиля в километрах в час, 
-                если спидометр показывает 50 миль в час? Ответ округлите до целого числа.`,
-                theory: 'No comments',
-                answer: '80'
             },
         ]
     },

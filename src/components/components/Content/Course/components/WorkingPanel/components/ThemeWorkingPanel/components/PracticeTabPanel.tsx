@@ -6,13 +6,18 @@ import { Button, Theme } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Grow from '@material-ui/core/Grow';
 import { ResultTitleHOC } from './hoc/ResultTitleHOC';
+import { AutoGenerateSubThemeCourse } from 'components/components/Content/Course/type';
 
 const maxSize = '100%';
+
+type DispatchProps = {
+    generateInputData: () => AutoGenerateSubThemeCourse
+};
 
 type Props = {
     question: string,
     answer: string
-};
+} & DispatchProps;
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
     content: {
@@ -56,6 +61,12 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
             backgroundColor: '#EF6767',
         }
     },
+    button_tryAgain: {
+        backgroundColor: '#000',
+        '&:hover': {
+            backgroundColor: '#000',
+        }
+    },
     content_result: {
         display: 'flex',
         flexFlow: 'row wrap',
@@ -74,15 +85,19 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
  * Представление для выполнении практики по заданной под-теме.
  * @param question Вопрос по заданной под-теме.
  * @param answer Ответ по заданной под-теме.
+ * @param generateInputData Метод для автогенерации под-темы.
  */
 export const PracticeTabPanel: React.FC<Props> = ({
     question,
-    answer
+    answer,
+    generateInputData
 }) => {
     const classes = useStyles();
 
     const [userAnswer, setUserAnswer] = React.useState('');
     const [solutionVisible, setVisible] = React.useState(false);
+    const [questionState, setQuestion] = React.useState(question);
+    const [answerState, setAnswer] = React.useState(answer);
 
     const toggleVisibleSolution = () => {
         setVisible(!solutionVisible);
@@ -92,9 +107,15 @@ export const PracticeTabPanel: React.FC<Props> = ({
         setUserAnswer(event.target.value);
     };
 
+    const onGenerateNewData = () => {
+        let inputData = generateInputData();
+        setQuestion(inputData.question);
+        setAnswer(inputData.answer);
+    };
+
     return (
         <div className={classes.content}>
-            <div className={classes.content_question}>{question}</div>
+            <div className={classes.content_question}>{questionState}</div>
 
             <TextField
                 label="Ответ"
@@ -123,11 +144,15 @@ export const PracticeTabPanel: React.FC<Props> = ({
                 <div style={{ marginTop: 70 }}>
                     <div className={classes.content_result}>
                        <ResultTitleHOC userAnswer={userAnswer}
-                                       answer={answer}/>
+                                       answer={answerState}/>
                     </div>
                     <Paper elevation={4} className={classes.content_solution}>
-                        <div>Ответ: {answer}</div>
+                        <div>Ответ: {answerState}</div>
                     </Paper>
+
+                    <Button className={clsx(classes.content_buttons_button, classes.button_tryAgain)}
+                    variant="contained"
+                    onClick={onGenerateNewData}>{'Попробовать ещё'}</Button>
                 </div>
             </Grow>
         </div>
