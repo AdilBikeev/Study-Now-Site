@@ -16,7 +16,8 @@ type DispatchProps = {
 
 type Props = {
     question: string,
-    answer: string
+    answer: string,
+    solution: string
 } & DispatchProps;
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -62,6 +63,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
         }
     },
     button_tryAgain: {
+        margin: '0 auto',
         backgroundColor: '#000',
         '&:hover': {
             backgroundColor: '#000',
@@ -73,23 +75,29 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
         margin: theme.spacing(1),
         padding: theme.spacing(1),
     },
-    content_solution: {
-        margin: theme.spacing(1),
+    content_solution_root: {
+        margin: theme.spacing(2),
         padding: theme.spacing(1),
-        border: '5px solid black',
-        borderRadius: 12
+        border: '2px solid black',
+        borderRadius: 12,
+        fontWeight: "bold"
     },
+    content_solution: {
+        marginBottom: theme.spacing(4),
+    }
 }));
 
 /**
  * Представление для выполнении практики по заданной под-теме.
  * @param question Вопрос по заданной под-теме.
  * @param answer Ответ по заданной под-теме.
+ * @param solution Решение по заданной под-теме.
  * @param generateInputData Метод для автогенерации под-темы.
  */
 export const PracticeTabPanel: React.FC<Props> = ({
     question,
     answer,
+    solution,
     generateInputData
 }) => {
     const classes = useStyles();
@@ -98,6 +106,7 @@ export const PracticeTabPanel: React.FC<Props> = ({
     const [solutionVisible, setVisible] = React.useState(false);
     const [questionState, setQuestion] = React.useState(question);
     const [answerState, setAnswer] = React.useState(answer);
+    const [solutionState, setSolution] = React.useState(solution);
 
     const toggleVisibleSolution = () => {
         setVisible(!solutionVisible);
@@ -111,6 +120,7 @@ export const PracticeTabPanel: React.FC<Props> = ({
         let inputData = generateInputData();
         setQuestion(inputData.question);
         setAnswer(inputData.answer);
+        setSolution(inputData.solution);
     };
 
     return (
@@ -141,18 +151,19 @@ export const PracticeTabPanel: React.FC<Props> = ({
                 style={{ transformOrigin: '0 0 0' }}
                 {...(solutionVisible ? { timeout: 1000 } : {})}
             >
-                <div style={{ marginTop: 70 }}>
+                <div style={{ marginTop: 70, display: 'flex', flexDirection: "column" }}>
                     <div className={classes.content_result}>
-                       <ResultTitleHOC userAnswer={userAnswer}
-                                       answer={answerState}/>
+                        <ResultTitleHOC userAnswer={userAnswer}
+                            answer={answerState} />
                     </div>
-                    <Paper elevation={4} className={classes.content_solution}>
+                    <Paper elevation={4} className={classes.content_solution_root}>
+                        <div className={classes.content_solution}>{solutionState}</div>
                         <div>Ответ: {answerState}</div>
                     </Paper>
 
                     <Button className={clsx(classes.content_buttons_button, classes.button_tryAgain)}
-                    variant="contained"
-                    onClick={onGenerateNewData}>{'Попробовать ещё'}</Button>
+                        variant="contained"
+                        onClick={onGenerateNewData}>{'Попробовать ещё'}</Button>
                 </div>
             </Grow>
         </div>
