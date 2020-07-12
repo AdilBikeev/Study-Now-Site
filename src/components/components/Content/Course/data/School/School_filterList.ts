@@ -9,6 +9,7 @@ export type School_filterName = 'Класс' | 'Предмет' | 'Цель';
  * Список фильтров курса для школьников.
  */
 export const School_filterList: Array<FilterListItem> = [
+    /* расскомментирвоат после реализации задачи с фильтрацией тем курса
     {
         placeholder: 'Класс',
         values: ['11 класс']
@@ -20,5 +21,5 @@ export const School_filterList: Array<FilterListItem> = [
     {
         placeholder: 'Цель',
         values: ['ЕГЭ']
-    },
+    },*/
 ];
