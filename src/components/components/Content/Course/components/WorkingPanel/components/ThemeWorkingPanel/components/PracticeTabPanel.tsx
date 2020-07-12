@@ -10,13 +10,16 @@ import { ResultTitleHOC } from './hoc/ResultTitleHOC';
 const maxSize = '100%';
 
 type DispatchProps = {
-    onGenerateNewData: () => void
+    onGenerateNewData: () => void,
+    setVisible: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 type Props = {
     question: string,
     answer: string,
-    solution: string
+    solution: string,
+    solutionVisible: boolean,
+    timeoutChangeVisible: number
 } & DispatchProps;
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -91,18 +94,22 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
  * @param question Вопрос по заданной под-теме.
  * @param answer Ответ по заданной под-теме.
  * @param solution Решение по заданной под-теме.
+ * @param solutionVisible Задаем видимость решения задачи.
+ * @param timeoutChangeVisible Время смены видимости решения.
  * @param generateInputData Метод для автогенерации под-темы.
  */
 export const PracticeTabPanel: React.FC<Props> = ({
     question,
     answer,
     solution,
-    onGenerateNewData
+    solutionVisible,
+    timeoutChangeVisible,
+    onGenerateNewData,
+    setVisible
 }) => {
     const classes = useStyles();
 
     const [userAnswer, setUserAnswer] = React.useState('');
-    const [solutionVisible, setVisible] = React.useState(false);
 
     const toggleVisibleSolution = () => {
         setVisible(!solutionVisible);
@@ -138,7 +145,7 @@ export const PracticeTabPanel: React.FC<Props> = ({
             <Grow
                 in={solutionVisible}
                 style={{ transformOrigin: '0 0 0' }}
-                {...(solutionVisible ? { timeout: 1000 } : {})}
+                {...(solutionVisible ? { timeout: timeoutChangeVisible } : {})}
             >
                 <div style={{ marginTop: 70, display: 'flex', flexDirection: "column" }}>
                     <div className={classes.content_result}>

@@ -48,12 +48,18 @@ export const ThemeWorkingPanel: React.FC<Props> = ({
     const [questionState, setQuestion] = React.useState(subThemesList[selectedSubTheme].question);
     const [answerState, setAnswer] = React.useState(subThemesList[selectedSubTheme].answer);
     const [solutionState, setSolution] = React.useState(subThemesList[selectedSubTheme].solution);
+    const [solutionVisible, setVisible] = React.useState(false);
+
+    const timeoutChangeVisible = 1000;
 
     const onGenerateNewData = () => {
-        let inputData = subThemesList[selectedSubTheme].generateInputData();
-        setQuestion(inputData.question);
-        setAnswer(inputData.answer);
-        setSolution(inputData.solution);
+        setVisible(false);
+        setTimeout(() => {
+            let inputData = subThemesList[selectedSubTheme].generateInputData();
+            setQuestion(inputData.question);
+            setAnswer(inputData.answer);
+            setSolution(inputData.solution);
+        }, timeoutChangeVisible - 500);
     };
 
     if (selectedSubTheme >= subThemesList.length) {
@@ -66,10 +72,15 @@ export const ThemeWorkingPanel: React.FC<Props> = ({
     ];
 
     const tabPanels: Array<TabPanelType> = [
-        { component: <PracticeTabPanel question={questionState}
-                                       answer={answerState}
-                                       solution={solutionState}
-                                       onGenerateNewData={onGenerateNewData} /> },
+        {
+            component: <PracticeTabPanel question={questionState}
+                answer={answerState}
+                solution={solutionState}
+                solutionVisible={solutionVisible}
+                timeoutChangeVisible={timeoutChangeVisible}
+                onGenerateNewData={onGenerateNewData}
+                setVisible={setVisible} />
+        },
         { component: <div>{subThemesList[selectedSubTheme].theory}</div> },
     ];
 
