@@ -2,8 +2,7 @@
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Tabs, Tab } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
@@ -48,6 +47,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     tabPanel: {
         minHeight: '710px'
+    },
+    indicator: {
+        backgroundColor: '#4BD37B',
+        height: '5px'
     }
 }));
 
@@ -83,10 +86,10 @@ export const FullWidthTabs: React.FC<Props> = ({
                 <Tabs
                     value={value}
                     onChange={handleChange}
-                    indicatorColor="primary"
                     textColor="primary"
                     variant="fullWidth"
                     aria-label="full width tabs example"
+                    classes={{indicator: classes.indicator}}
                 >
                     {tabItems.map(
                         (tab, index) => <Tab {...a11yProps(index)}
