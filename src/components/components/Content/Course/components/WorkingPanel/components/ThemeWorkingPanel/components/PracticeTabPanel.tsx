@@ -129,6 +129,7 @@ export const PracticeTabPanel: React.FC<Props> = ({
                 rows={1}
                 variant="outlined"
                 value={userAnswer}
+                disabled={solutionVisible}
                 onChange={onChangeAnswer}
                 className={classes.content_answer}
             />
