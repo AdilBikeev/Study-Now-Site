@@ -136,6 +136,7 @@ export const PracticeTabPanel: React.FC<Props> = ({
             <div className={classes.content_buttons}>
                 <Button className={clsx(classes.content_buttons_button, classes.button_confirm)}
                     variant="contained"
+                    disabled={solutionVisible}
                     onClick={() => setVisible(true)}>Подтвердить</Button>
                 <Button className={clsx(classes.content_buttons_button, classes.button_showSolution)}
                     variant="contained"
