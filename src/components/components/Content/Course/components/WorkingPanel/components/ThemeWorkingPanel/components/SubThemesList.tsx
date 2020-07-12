@@ -79,7 +79,7 @@ export const SubThemesList: React.FC<Props> = ({
                 })}
                     key={index} button
                     onClick={() => onSubThemeChange(index)}>
-                    <span className={classes.subThemesListItemText}>{index}</span>
+                    <span className={classes.subThemesListItemText}>{index + 1}</span>
                 </ListItem>))}
             </List>
             <Hidden xlUp>
