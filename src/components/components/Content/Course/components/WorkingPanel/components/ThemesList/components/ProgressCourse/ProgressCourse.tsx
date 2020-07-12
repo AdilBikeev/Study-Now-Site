@@ -23,14 +23,14 @@ const useStyles = (levelBg: string) => makeStyles(createStyles({
   },
   progressStat: {
     width: '20%',
-    fontSize: '1vw'
+    fontSize: '1.65em'
   }
 }))();
 
 const BorderLinearProgress = withStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '10vw',
+      width: '12em',
       height: 30,
       borderRadius: 5,
       margin: 'auto 20px'
