@@ -5,6 +5,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { ThemesListItem } from '../../ThemesList/components/ThemesListItem';
 import { ThemeCourse } from 'components/components/Content/Course/type';
+import { getCountSubThemesCompleted } from '../../ThemesList/Helpers/ProgressCourseHelpers';
 
 const drawerWidth = 240;
 
@@ -105,6 +106,7 @@ export const DropThemesMenu: React.FC<Props> = ({
                                                                       numberTheme={(index + 1).toString()}
                                                                       title={element.name}
                                                                       isSelectedItem={index === selectedTheme}
+                                                                      isCompleted={getCountSubThemesCompleted(element.subThemesCourse) === element.subThemesCourse.length}
                                                                       onThemeChange={onThemeChange}/>)}
                 </List>
             </div>

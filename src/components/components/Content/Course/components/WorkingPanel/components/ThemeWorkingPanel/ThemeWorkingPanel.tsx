@@ -7,7 +7,8 @@ import { FullWidthTabs } from 'common/TabPanel/TabPanel';
 import { PracticeTabPanel } from './components/PracticeTabPanel';
 
 type DispatchProps = {
-    onThemeChange: (index: number) => void
+    onThemeChange: (index: number) => void,
+    setCompletedSubTheme: (isCompleted: boolean, subThemeCourseIndex: number) => void
 };
 
 type Props = {
@@ -32,12 +33,14 @@ const useStyles = makeStyles(createStyles({
  * @param themesList Список тем курса.
  * @param selectedTheme Индекс выбранной темы.
  * @param onThemeChange Событие вызывающийся при изменении выбранной темы.
+ * @param setCompletedSubTheme Метод устанавливающий задау в статус "Выполнено".
  */
 export const ThemeWorkingPanel: React.FC<Props> = ({
     subThemesList,
     themesList,
     selectedTheme,
-    onThemeChange
+    onThemeChange,
+    setCompletedSubTheme
 }) => {
 
     const classes = useStyles();
@@ -51,6 +54,15 @@ export const ThemeWorkingPanel: React.FC<Props> = ({
     const [solutionVisible, setVisible] = React.useState(false);
 
     const timeoutChangeVisible = 1000;
+
+    const onChangeSolutionVisible = (isVisible: boolean, userAnswer: string) => {  
+        // Если решение готовится отобразится - проверяем ответ пользователя.
+        if (isVisible === true) {
+            setCompletedSubTheme(answerState === userAnswer, selectedSubTheme);
+        }
+
+        setVisible(isVisible);
+    };
 
     const onGenerateNewData = () => {
         setVisible(false);
@@ -79,7 +91,7 @@ export const ThemeWorkingPanel: React.FC<Props> = ({
                 solutionVisible={solutionVisible}
                 timeoutChangeVisible={timeoutChangeVisible}
                 onGenerateNewData={onGenerateNewData}
-                setVisible={setVisible} />
+                onChangeSolutionVisible={onChangeSolutionVisible} />
         },
         { component: <div>{subThemesList[selectedSubTheme].theory}</div> },
     ];

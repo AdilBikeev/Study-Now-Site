@@ -1,10 +1,10 @@
-﻿import { ThemeCourse, SubThemeCourse } from "../../../../../../../type";
+﻿import { ThemeCourse, SubThemeCourse } from "../../../../../type";
 
 /**
  * Возвращает кол-во пройденных под-тем.
  * @param subThemesList Список под-тем.
  */
-const getCountSubThemesCompleted = (subThemesList: Array<SubThemeCourse>) => {
+export const getCountSubThemesCompleted = (subThemesList: Array<SubThemeCourse>) => {
     return subThemesList.filter(subTheme => subTheme.completed).length;
 }
 

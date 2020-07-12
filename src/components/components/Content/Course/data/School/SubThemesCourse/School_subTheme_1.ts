@@ -37,5 +37,5 @@ export const School_subTheme_1: Array<SubThemeCourse> =  [
             },
             theory: 'Гуглите',
             answer: '20'
-        }
+        },
 ];

@@ -2,6 +2,7 @@
 import React from "react";
 import { AppStateType } from "../../../../../store";
 import { WorkingPanel } from './WorkingPanel';
+import { CHECK_USER_ANSWER } from '../../actions';
 
 const mapStateToProps = (store: AppStateType) => {
     return {
@@ -17,6 +18,8 @@ type OwnPropsType = {
 };
 
 const mapDispatchToProps = {
+    setCompletedSubTheme: (isCompleted: boolean, coursDescIndex: number, themeCourseIndex: number, subThemeCourseIndex: number) => 
+    ({ type: CHECK_USER_ANSWER, isCompleted, coursDescIndex,  themeCourseIndex, subThemeCourseIndex})
 };
 
 type Props = ReturnType<typeof mapStateToProps> & OwnPropsType & typeof mapDispatchToProps;
@@ -26,12 +29,20 @@ type Props = ReturnType<typeof mapStateToProps> & OwnPropsType & typeof mapDispa
  * соответствующие ей рабочую область (список тем и заданий)
  */
 class WorkingPanelContainerComponent extends React.Component<Props> {
-    render() {
-        
-        const course = this.props.courses.find(x => this.props.courseName.includes(x.courseName));
-        const themesList = course?.themesList;
+    setCompleted(isCompleted: boolean, themeCourseIndex: number, subThemeCourseIndex: number) {
+        const course = this.getCource();
+        const courseIndex = this.props.courses.findIndex(x => x === course);
 
-        return themesList ? <WorkingPanel themesList={themesList}/> : <div>ERROR 500</div>;
+        this.props.setCompletedSubTheme(isCompleted, courseIndex, themeCourseIndex, subThemeCourseIndex);
+    }
+    getCource() {
+        return this.props.courses.find(x => this.props.courseName.includes(x.courseName));
+    }
+    render() {
+        const themesList = this.getCource()?.themesList;
+
+        return themesList ? <WorkingPanel themesList={themesList}
+                                          setCompletedSubTheme={this.setCompleted.bind(this)}/> : <div>ERROR 500</div>;
     }
 }
 

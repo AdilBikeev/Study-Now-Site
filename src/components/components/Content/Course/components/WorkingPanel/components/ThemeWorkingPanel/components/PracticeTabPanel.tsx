@@ -11,7 +11,7 @@ const maxSize = '100%';
 
 type DispatchProps = {
     onGenerateNewData: () => void,
-    setVisible: React.Dispatch<React.SetStateAction<boolean>>
+    onChangeSolutionVisible: (isVisible: boolean, userAnswer: string) => void
 };
 
 type Props = {
@@ -105,14 +105,14 @@ export const PracticeTabPanel: React.FC<Props> = ({
     solutionVisible,
     timeoutChangeVisible,
     onGenerateNewData,
-    setVisible
+    onChangeSolutionVisible
 }) => {
     const classes = useStyles();
 
     const [userAnswer, setUserAnswer] = React.useState('');
 
     const toggleVisibleSolution = () => {
-        setVisible(!solutionVisible);
+        onChangeSolutionVisible(!solutionVisible, userAnswer);
     };
 
     const onChangeAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -137,7 +137,7 @@ export const PracticeTabPanel: React.FC<Props> = ({
                 <Button className={clsx(classes.content_buttons_button, classes.button_confirm)}
                     variant="contained"
                     disabled={solutionVisible}
-                    onClick={() => setVisible(true)}>Подтвердить</Button>
+                    onClick={() => onChangeSolutionVisible(true, userAnswer)}>Подтвердить</Button>
                 <Button className={clsx(classes.content_buttons_button, classes.button_showSolution)}
                     variant="contained"
                     onClick={toggleVisibleSolution}>{solutionVisible ? 'Скрыть решение' : 'Посмотреть решение'}</Button>

@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ThemeCourse } from '../../../../../../type';
-import { getCountCompletedThemes } from './Helpers/ProgressCourseHelpers';
+import { getCountCompletedThemes } from '../../Helpers/ProgressCourseHelpers';
 import { LinearProgress, withStyles, Theme } from '@material-ui/core';
 import { getProgressIcon } from 'utils/progressHelper';
 

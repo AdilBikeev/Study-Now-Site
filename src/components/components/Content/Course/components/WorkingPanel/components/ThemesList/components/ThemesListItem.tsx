@@ -11,7 +11,8 @@ type DispatchProps = {
 type Props = {
     numberTheme: string,
     title: string,
-    isSelectedItem: boolean
+    isSelectedItem: boolean,
+    isCompleted: boolean
 } & DispatchProps;
 
 const useStyles = (isSelectedItem: boolean) => makeStyles(createStyles({
@@ -26,10 +27,16 @@ const useStyles = (isSelectedItem: boolean) => makeStyles(createStyles({
             backgroundColor: '#AFECC8',
         }
     },
-    selectedThemesListItem: {
+    themesListItem_selected: {
         backgroundColor: '#F4E02D',
         '&:hover': {
             backgroundColor: '#F4E02D',
+        }
+    },
+    themesListItem_completed: {
+        backgroundColor: '#72FFA4',
+        '&:hover': {
+            backgroundColor: '#72FFA4',
         }
     },
     numberTheme: {
@@ -54,12 +61,14 @@ const useStyles = (isSelectedItem: boolean) => makeStyles(createStyles({
  * @param numberTheme Номер темы.
  * @param title Название темы.
  * @param isSelectedItem Флаг показывающий выбран ли элемент.
+ * @param isCompleted Флаг показывающий пройдена ли тема курса.
  * @param onThemeChange Событие вызывающийся при изменении выбранной темы.
  */
 export const ThemesListItem: React.FC<Props> = ({
     numberTheme,
     title,
     isSelectedItem,
+    isCompleted,
     onThemeChange
 }) => {
 
@@ -67,7 +76,8 @@ export const ThemesListItem: React.FC<Props> = ({
 
     return (
         <ListItem className={clsx(classes.themesListItem, {
-            [classes.selectedThemesListItem]: isSelectedItem
+            [classes.themesListItem_selected]: isSelectedItem,
+            [classes.themesListItem_completed]: isCompleted
         })} button 
             key={title}
             onClick={() => onThemeChange(Number(numberTheme) - 1)}>
