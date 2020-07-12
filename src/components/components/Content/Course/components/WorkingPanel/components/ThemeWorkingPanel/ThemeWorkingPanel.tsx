@@ -45,6 +45,17 @@ export const ThemeWorkingPanel: React.FC<Props> = ({
     const [selectedSubTheme, onSubThemeChange] = useState(0); // выбранная под-тема
     const [isOpen, toggleDrawer] = useState(false);
 
+    const [questionState, setQuestion] = React.useState(subThemesList[selectedSubTheme].question);
+    const [answerState, setAnswer] = React.useState(subThemesList[selectedSubTheme].answer);
+    const [solutionState, setSolution] = React.useState(subThemesList[selectedSubTheme].solution);
+
+    const onGenerateNewData = () => {
+        let inputData = subThemesList[selectedSubTheme].generateInputData();
+        setQuestion(inputData.question);
+        setAnswer(inputData.answer);
+        setSolution(inputData.solution);
+    };
+
     if (selectedSubTheme >= subThemesList.length) {
         onSubThemeChange(0);
     }
@@ -55,10 +66,10 @@ export const ThemeWorkingPanel: React.FC<Props> = ({
     ];
 
     const tabPanels: Array<TabPanelType> = [
-        { component: <PracticeTabPanel question={subThemesList[selectedSubTheme].question}
-                                       answer={subThemesList[selectedSubTheme].answer}
-                                       solution={subThemesList[selectedSubTheme].solution}
-                                       generateInputData={subThemesList[selectedSubTheme].generateInputData} /> },
+        { component: <PracticeTabPanel question={questionState}
+                                       answer={answerState}
+                                       solution={solutionState}
+                                       onGenerateNewData={onGenerateNewData} /> },
         { component: <div>{subThemesList[selectedSubTheme].theory}</div> },
     ];
 

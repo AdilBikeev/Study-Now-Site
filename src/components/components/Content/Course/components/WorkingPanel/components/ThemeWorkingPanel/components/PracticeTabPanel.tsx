@@ -6,12 +6,11 @@ import { Button, Theme } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Grow from '@material-ui/core/Grow';
 import { ResultTitleHOC } from './hoc/ResultTitleHOC';
-import { AutoGenerateSubThemeCourse } from 'components/components/Content/Course/type';
 
 const maxSize = '100%';
 
 type DispatchProps = {
-    generateInputData: () => AutoGenerateSubThemeCourse
+    onGenerateNewData: () => void
 };
 
 type Props = {
@@ -98,15 +97,12 @@ export const PracticeTabPanel: React.FC<Props> = ({
     question,
     answer,
     solution,
-    generateInputData
+    onGenerateNewData
 }) => {
     const classes = useStyles();
 
     const [userAnswer, setUserAnswer] = React.useState('');
     const [solutionVisible, setVisible] = React.useState(false);
-    const [questionState, setQuestion] = React.useState(question);
-    const [answerState, setAnswer] = React.useState(answer);
-    const [solutionState, setSolution] = React.useState(solution);
 
     const toggleVisibleSolution = () => {
         setVisible(!solutionVisible);
@@ -116,16 +112,9 @@ export const PracticeTabPanel: React.FC<Props> = ({
         setUserAnswer(event.target.value);
     };
 
-    const onGenerateNewData = () => {
-        let inputData = generateInputData();
-        setQuestion(inputData.question);
-        setAnswer(inputData.answer);
-        setSolution(inputData.solution);
-    };
-
     return (
         <div className={classes.content}>
-            <div className={classes.content_question}>{questionState}</div>
+            <div className={classes.content_question}>{question}</div>
 
             <TextField
                 label="Ответ"
@@ -154,11 +143,11 @@ export const PracticeTabPanel: React.FC<Props> = ({
                 <div style={{ marginTop: 70, display: 'flex', flexDirection: "column" }}>
                     <div className={classes.content_result}>
                         <ResultTitleHOC userAnswer={userAnswer}
-                            answer={answerState} />
+                            answer={answer} />
                     </div>
                     <Paper elevation={4} className={classes.content_solution_root}>
-                        <div className={classes.content_solution}>{solutionState}</div>
-                        <div>Ответ: {answerState}</div>
+                        <div className={classes.content_solution}>{solution}</div>
+                        <div>Ответ: {answer}</div>
                     </Paper>
 
                     <Button className={clsx(classes.content_buttons_button, classes.button_tryAgain)}
